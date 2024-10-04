@@ -31,16 +31,16 @@ jobs:
         uses: KikimoraGames/itch-publish@v0.0.3
         with:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./game/bin/web/web.zip
+          gameData: ./export/web/index.zip
           itchUsername: ${{ secrets.ITCH_USER }}
           itchGameId: ludumdare56
           buildChannel: html5
 
-      - name: Upload windows build to itch
-        uses: KikimoraGames/itch-publish@v0.0.3
-        with:
-          butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
-          gameData: ./game/bin/win/win.zip
-          itchUsername: ${{ secrets.ITCH_USER }}
-          itchGameId: ludumdare56
-          buildChannel: windows
+      # - name: Upload windows build to itch
+      #   uses: KikimoraGames/itch-publish@v0.0.3
+      #   with:
+      #     butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
+      #     gameData: ./export/win/win.zip
+      #     itchUsername: ${{ secrets.ITCH_USER }}
+      #     itchGameId: ludumdare56
+      #     buildChannel: windows
