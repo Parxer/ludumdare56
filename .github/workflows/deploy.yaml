@@ -20,9 +20,9 @@ jobs:
         id: export
         uses: firebelley/godot-export@v5.2.1
         with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_linux.x86_64.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
-          relative_project_path: ./game/
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          relative_project_path: ./
           archive_output: true
           use_preset_export_path: true
           export_debug: false
@@ -33,7 +33,7 @@ jobs:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
           gameData: ./game/bin/web/web.zip
           itchUsername: ${{ secrets.ITCH_USER }}
-          itchGameId: playintheleaves
+          itchGameId: ludumdare56
           buildChannel: html5
 
       - name: Upload windows build to itch
@@ -42,5 +42,5 @@ jobs:
           butlerApiKey: ${{ secrets.BUTLER_API_KEY }}
           gameData: ./game/bin/win/win.zip
           itchUsername: ${{ secrets.ITCH_USER }}
-          itchGameId: playintheleaves
+          itchGameId: ludumdare56
           buildChannel: windows
