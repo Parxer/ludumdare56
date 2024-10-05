@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ckw1x2opbkn3"]
 
-[ext_resource type="Script" path="res://static_body_3d.gd" id="1_herp8"]
+[ext_resource type="Script" path="res://building.gd" id="1_nfi6j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mcmp"]
 albedo_color = Color(0.390657, 0.335031, 0.256336, 1)
@@ -13,8 +13,7 @@ top_radius = 0.3
 radius = 0.4
 
 [node name="Building" type="StaticBody3D" groups=["buildings"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28073, 1, 2.33432)
-script = ExtResource("1_herp8")
+script = ExtResource("1_nfi6j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_f4lpi")
@@ -22,4 +21,14 @@ mesh = SubResource("CylinderMesh_f4lpi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ay41e")
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Value" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+billboard = 1
+modulate = Color(1, 0.981883, 0.220972, 1)
+outline_modulate = Color(0.333333, 0, 0.345098, 1)
+text = "XXX"
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

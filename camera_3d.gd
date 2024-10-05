@@ -7,7 +7,7 @@ const ZOOM_SPEED = 60.0
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -15,6 +15,12 @@ func _physics_process(delta: float) -> void:
 	position.z += direction.z * SPEED * delta
 	
 	if Input.is_action_just_released("zoom_in"):
-		size -= ZOOM_SPEED * delta
+		if projection == PROJECTION_PERSPECTIVE:
+			position.y -= ZOOM_SPEED * delta
+		if projection == PROJECTION_ORTHOGONAL:
+			size -= ZOOM_SPEED * delta
 	if Input.is_action_just_released("zoom_out"):
-		size += ZOOM_SPEED * delta
+		if projection == PROJECTION_PERSPECTIVE:
+			position.y += ZOOM_SPEED * delta
+		if projection == PROJECTION_ORTHOGONAL:
+			size += ZOOM_SPEED * delta

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://lobwe78xth1g"]
+
+[ext_resource type="Script" path="res://overlay.gd" id="1_cbk3o"]
+[ext_resource type="PackedScene" uid="uid://c1rc8pv706y60" path="res://town.tscn" id="2_u1ihf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdqe4"]
+albedo_color = Color(0.290196, 0.239216, 0.0392157, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u8dl1"]
+material = SubResource("StandardMaterial3D_kdqe4")
+size = Vector2(2, 2)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_51xb3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojroi"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_51xb3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0cr5"]
+size = Vector3(2, 2, 0.1)
+
+[node name="Overlay" type="Node3D"]
+script = ExtResource("1_cbk3o")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+gui_embed_subwindows = true
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Town" parent="SubViewport" instance=ExtResource("2_u1ihf")]
+position = Vector2(128, 128)
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_u8dl1")
+surface_material_override/0 = SubResource("StandardMaterial3D_ojroi")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+shape = SubResource("BoxShape3D_t0cr5")
