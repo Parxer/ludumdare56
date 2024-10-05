@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
-[ext_resource type="PackedScene" uid="uid://lobwe78xth1g" path="res://overlay.tscn" id="4_sehsk"]
+[ext_resource type="PackedScene" path="res://overlay.tscn" id="4_sehsk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eub28"]
 albedo_color = Color(0.161389, 0.233487, 9.62615e-08, 1)
