@@ -1,0 +1,65 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://b71as4grbjdsv"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_i0eo6"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_1e2lm"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qo8kb"]
+input_name = "time"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ku2ar"]
+noise_type = 2
+frequency = 0.0004
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_clb6e"]
+noise = SubResource("FastNoiseLite_ku2ar")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6ya1n"]
+expanded_output_ports = [0]
+texture = SubResource("NoiseTexture2D_clb6e")
+texture_type = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform sampler2D tex_vtx_7 : source_color;
+
+
+
+void vertex() {
+// Input:4
+	vec3 n_out4p0 = VERTEX;
+
+
+// Input:6
+	float n_out6p0 = TIME;
+
+
+// Texture2D:7
+	vec4 n_out7p0 = texture(tex_vtx_7, vec2(n_out6p0));
+	float n_out7p1 = n_out7p0.r;
+
+
+// VectorOp:5
+	vec3 n_out5p0 = n_out4p0 + vec3(n_out7p1);
+
+
+// Output:0
+	VERTEX = n_out5p0;
+
+
+}
+"
+graph_offset = Vector2(-227.811, -88.8263)
+nodes/vertex/0/position = Vector2(1260, 60)
+nodes/vertex/4/node = SubResource("VisualShaderNodeInput_i0eo6")
+nodes/vertex/4/position = Vector2(-480, -180)
+nodes/vertex/5/node = SubResource("VisualShaderNodeVectorOp_1e2lm")
+nodes/vertex/5/position = Vector2(640, -120)
+nodes/vertex/6/node = SubResource("VisualShaderNodeInput_qo8kb")
+nodes/vertex/6/position = Vector2(-1000, 340)
+nodes/vertex/7/node = SubResource("VisualShaderNodeTexture_6ya1n")
+nodes/vertex/7/position = Vector2(-420, 60)
+nodes/vertex/connections = PackedInt32Array(4, 0, 5, 0, 5, 0, 0, 0, 7, 1, 5, 1, 6, 0, 7, 0)
