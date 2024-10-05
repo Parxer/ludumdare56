@@ -53,7 +53,6 @@ size = 11.98
 script = ExtResource("1_1u54x")
 
 [node name="Building" parent="." instance=ExtResource("3_hh5b1")]
-id = 1
 
 [node name="Overlay" type="Control" parent="."]
 clip_contents = true
@@ -93,3 +92,5 @@ layout_mode = 0
 offset_right = 296.0
 offset_bottom = 296.0
 texture = SubResource("GradientTexture2D_kbruo")
+
+[connection signal="building_selected" from="Building" to="." method="_on_building_building_selected"]
