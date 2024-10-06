@@ -31,12 +31,12 @@ ground_horizon_color = Color(0.623126, 0.647061, 0.777143, 1)
 sun_angle_max = 141.11
 sun_curve = 0.424264
 
-[sub_resource type="Sky" id="Sky_e1nus"]
+[sub_resource type="Sky" id="Sky_11d7d"]
 sky_material = SubResource("ProceduralSkyMaterial_e3tdy")
 
 [sub_resource type="Environment" id="Environment_bmypt"]
 background_mode = 1
-sky = SubResource("Sky_e1nus")
+sky = SubResource("Sky_11d7d")
 glow_enabled = true
 glow_intensity = 1.2
 glow_bloom = 0.6
