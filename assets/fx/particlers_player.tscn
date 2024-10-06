@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnyk7ubykhqy5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_54rqp"]
+emission_enabled = true
+emission = Color(0.607687, 0.372634, 0, 1)
+emission_energy_multiplier = 5.0
+ao_light_affect = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8vaco"]
+material = SubResource("StandardMaterial3D_54rqp")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 2
+
+[sub_resource type="Curve" id="Curve_gqwq4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0782123, 1), 0.0, 0.0, 0, 0, Vector2(0.818436, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="Particles" type="CPUParticles3D"]
+cast_shadow = 0
+amount = 10
+lifetime = 20.0
+mesh = SubResource("SphereMesh_8vaco")
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.1
+initial_velocity_max = 0.2
+radial_accel_min = -3.0
+radial_accel_max = 1.0
+scale_amount_min = 0.0
+scale_amount_curve = SubResource("Curve_gqwq4")
+
+[node name="Light" type="OmniLight3D" parent="."]
+light_color = Color(0.815162, 0.737478, 0.688869, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+light_volumetric_fog_energy = 2.0
+light_size = 0.293
+shadow_enabled = true
