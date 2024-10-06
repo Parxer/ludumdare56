@@ -16,10 +16,11 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-	position += target.normalized() * speed * delta
+	var direction = (target - transform.origin).normalized();
+	position += direction * speed * delta
 
 
 func _on_area_entered(area: Area3D) -> void:
 	if not area.is_in_group("buildings") or area == spawner:
 		return
-	print_debug("Other building hit!")
+	queue_free()

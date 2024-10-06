@@ -67,7 +67,7 @@ func handle_click() -> void:
 		close_overlay()
 
 func open_overlay(building) -> void:
-	overlay.set_content(building.get_interior())
+	#TODO load building data to interior
 	overlay.visible = true
 
 func close_overlay() -> void:

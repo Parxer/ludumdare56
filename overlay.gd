@@ -8,7 +8,6 @@ var last_event_pos2D = null
 var last_event_time: float = -1.0
 
 @onready var node_viewport = $SubViewport
-@onready var content = $SubViewport/Content
 @onready var node_quad = $Quad
 @onready var node_area = $Quad/Area3D
 
@@ -106,6 +105,3 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 func get_collider() -> CollisionObject3D:
 	return node_area
-
-func set_content(interior: Interior) -> void:
-	content = interior
