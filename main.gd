@@ -29,8 +29,7 @@ func _ready() -> void:
 		building.initialize(i, default_value, default_tick)
 		buildings.append(building)
 		i += 1
-	
-	spawn_army(buildings[0], buildings[1].position)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -83,6 +82,7 @@ func open_overlay(building) -> void:
 	overlay.visible = true
 
 func close_overlay() -> void:
+	opened_building = -1
 	overlay.visible = false
 	
 func start_drag(start_pos: Vector3) -> void:
