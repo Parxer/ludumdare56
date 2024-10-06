@@ -20,7 +20,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
 modulate = Color(0, 0.741176, 0.619608, 0.901961)
 outline_modulate = Color(2.04556e-07, 0.203347, 0.1639, 0.901961)
-text = "XXX"
 font = ExtResource("2_3ds0x")
 font_size = 80
 

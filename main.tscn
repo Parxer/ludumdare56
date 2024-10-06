@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
-[ext_resource type="PackedScene" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
+[ext_resource type="PackedScene" uid="uid://c4f6x77gcvxkh" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
 [ext_resource type="Shader" uid="uid://b71as4grbjdsv" path="res://assets/fx/water.tres" id="3_y1gkv"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_sehsk"]
@@ -90,7 +90,8 @@ light_color = Color(1, 0.921569, 0.858824, 1)
 light_energy = 1.5
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.5, 0.612373, -0.612373, 0, 0.707107, 0.707107, 0.866025, 0.353554, -0.353554, -5, 15, -5)
+transform = Transform3D(-0.529919, 0.599661, -0.599661, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.37471, -12.32, 20, -4.82)
+fov = 45.0
 size = 11.98
 near = 1.0
 far = 100.0
@@ -286,23 +287,25 @@ volume_db = -25.0
 autoplay = true
 parameters/looping = true
 
-[node name="Building" parent="." instance=ExtResource("3_hh5b1")]
+[node name="Buildings" type="Node" parent="."]
+
+[node name="Building" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0132, 0, 1.59708)
 mesh_scene = ExtResource("22_w4j3a")
 
-[node name="Building2" parent="." instance=ExtResource("3_hh5b1")]
+[node name="Building2" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75645, 0, 7.76372)
 
-[node name="Building3" parent="." instance=ExtResource("3_hh5b1")]
-transform = Transform3D(1.01027, 0.131606, 0.634055, -0.155012, 1.18995, -4.61971e-09, -0.628743, -0.0819049, 1.01881, 10.7408, 0, 1.62634)
+[node name="Building3" parent="Buildings" instance=ExtResource("3_hh5b1")]
+transform = Transform3D(0.841894, 0.109672, 0.528381, -0.129177, 0.991622, -1.8662e-07, -0.523954, -0.0682545, 0.849007, 10.7408, 0, 1.62634)
 
-[node name="Building4" parent="." instance=ExtResource("3_hh5b1")]
-transform = Transform3D(0.353158, -3.72529e-09, 0.353948, 0.0399023, 0.496813, -0.0398133, -0.351692, 0.0563675, 0.350907, 1.27461, -9.53674e-07, 12.4355)
+[node name="Building4" parent="Buildings" instance=ExtResource("3_hh5b1")]
+transform = Transform3D(0.706316, 4.84288e-08, 0.707897, 0.0798046, 0.993625, -0.0796265, -0.703384, 0.112735, 0.701813, 1.27461, -9.53674e-07, 12.4355)
 mesh_scene = ExtResource("22_w4j3a")
 
-[node name="Building5" parent="." instance=ExtResource("3_hh5b1")]
+[node name="Building5" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503, -3.41444, 0, -1.22208)
 mesh_scene = ExtResource("22_w4j3a")
 
-[node name="Building6" parent="." instance=ExtResource("3_hh5b1")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.9641, 0, 13.9569)
+[node name="Building6" parent="Buildings" instance=ExtResource("3_hh5b1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9641, 0, 13.9569)
