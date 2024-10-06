@@ -3,6 +3,8 @@ class_name Building extends Area3D
 @onready var timer = $Timer
 @onready var value_label = $Value
 
+@export var mesh_scene = preload("res://scenes/3d/mushroom.tscn")
+
 const DELTA_VALUE: int = 1
 const DELTA_SCALE: float = DELTA_VALUE / 2.0
 
@@ -26,7 +28,11 @@ func initialize(init_id: int, init_value: int, init_tick: float) -> void:
 	tick = init_tick
 
 func _ready() -> void:
+	get_node("deleteme").queue_free()
 	timer.start(tick)
+	var mesh_instance = 	mesh_scene.instantiate()
+	add_child(mesh_instance)
+	
 
 func update_scale() -> void:
 	var scale_diff = (float(value) / initial_state.value)
