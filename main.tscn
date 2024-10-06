@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=8 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
@@ -17,12 +17,6 @@ size = Vector3(25, 0.1, 25)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k8oex"]
 data = PackedVector3Array(-5, 0.05, 5, 5, 0.05, 5, -5, -0.05, 5, 5, 0.05, 5, 5, -0.05, 5, -5, -0.05, 5, 5, 0.05, -5, -5, 0.05, -5, 5, -0.05, -5, -5, 0.05, -5, -5, -0.05, -5, 5, -0.05, -5, 5, 0.05, 5, 5, 0.05, -5, 5, -0.05, 5, 5, 0.05, -5, 5, -0.05, -5, 5, -0.05, 5, -5, 0.05, -5, -5, 0.05, 5, -5, -0.05, -5, -5, 0.05, 5, -5, -0.05, 5, -5, -0.05, -5, 5, 0.05, 5, -5, 0.05, 5, 5, 0.05, -5, -5, 0.05, 5, -5, 0.05, -5, 5, 0.05, -5, -5, -0.05, 5, 5, -0.05, 5, -5, -0.05, -5, 5, -0.05, 5, 5, -0.05, -5, -5, -0.05, -5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhud4"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3v0s3"]
-material = SubResource("StandardMaterial3D_bhud4")
-size = Vector2(0.5, 2)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_i71he")
@@ -57,9 +51,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31234, 1, 5.02698)
 
 [node name="Building2" parent="." instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9997, 1, 7.04532)
-
-[node name="Arrow" type="Node3D" parent="."]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Arrow"]
-mesh = SubResource("PlaneMesh_3v0s3")
