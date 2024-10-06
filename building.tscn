@@ -10,25 +10,25 @@ material = SubResource("StandardMaterial3D_7mcmp")
 top_radius = 0.3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ay41e"]
-radius = 0.4
 
-[node name="Building" type="StaticBody3D" groups=["buildings"]]
+[node name="Building" type="Area3D" groups=["buildings"]]
 script = ExtResource("1_nfi6j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CylinderMesh_f4lpi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_ay41e")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Value" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
 modulate = Color(1, 0.981883, 0.220972, 1)
 outline_modulate = Color(0.333333, 0, 0.345098, 1)
 text = "XXX"
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

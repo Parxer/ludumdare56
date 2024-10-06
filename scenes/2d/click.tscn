@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://bu4r6t8sjy2cb"]
+
+[ext_resource type="Script" path="res://scenes/2d/click.gd" id="1_viqdf"]
+[ext_resource type="Texture2D" uid="uid://vjmmy8ko8b5s" path="res://assets/2d/click.png" id="2_md4yj"]
+[ext_resource type="AudioStream" uid="uid://b3lvf02noh8bp" path="res://assets/sound/click.wav" id="3_51vrm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuhsm"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh1gr"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkrr4"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrgyw"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anxvd"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp7n7"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk6wl"]
+atlas = ExtResource("2_md4yj")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqrww"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuhsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh1gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkrr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrgyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anxvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp7n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk6wl")
+}],
+"loop": true,
+"name": &"click",
+"speed": 25.0
+}]
+
+[node name="Click" type="Node2D"]
+script = ExtResource("1_viqdf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kqrww")
+animation = &"click"
+frame = 2
+frame_progress = 0.620642
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_51vrm")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

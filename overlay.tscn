@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://lobwe78xth1g"]
 
 [ext_resource type="Script" path="res://overlay.gd" id="1_cbk3o"]
-[ext_resource type="PackedScene" uid="uid://c1rc8pv706y60" path="res://town.tscn" id="2_u1ihf"]
+[ext_resource type="PackedScene" uid="uid://c1rc8pv706y60" path="res://interior.tscn" id="2_u1ihf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdqe4"]
 albedo_color = Color(0.290196, 0.239216, 0.0392157, 1)
@@ -27,12 +27,11 @@ script = ExtResource("1_cbk3o")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
-gui_embed_subwindows = true
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="Town" parent="SubViewport" instance=ExtResource("2_u1ihf")]
-position = Vector2(128, 128)
+[node name="Interior" parent="SubViewport" instance=ExtResource("2_u1ihf")]
+position = Vector2(0, 64)
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_u8dl1")

@@ -46,16 +46,7 @@ script = ExtResource("1_1u54x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -5)
 
 [node name="Building" parent="." instance=ExtResource("3_hh5b1")]
-state = {
-"id": 0,
-"tick": 0.7,
-"value": 100
-}
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31234, 1, 5.02698)
 
 [node name="Building2" parent="." instance=ExtResource("3_hh5b1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.58137, 1, -5.5695)
-state = {
-"id": 1,
-"tick": 0.5,
-"value": 100
-}
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9997, 1, 7.04532)
