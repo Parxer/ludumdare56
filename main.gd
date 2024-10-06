@@ -1,6 +1,6 @@
 extends Node3D
 
-const RAYCAST_LENGTH := 100
+const RAYCAST_LENGTH := 1000
 
 @onready var camera := $Camera3D
 @onready var overlay := $Camera3D/Overlay
@@ -54,10 +54,10 @@ func _unhandled_input(event: InputEvent) -> void:
 func handle_click() -> void:
 	var target = _get_click_collider()
 	if target:
-		print_debug(target)
 		if target.is_in_group("buildings"):
 			if opened_building == target.id:
-				start_drag(target.position)
+				var pos = Vector3(target.position.x, mouse_line_height, target.position.z)
+				start_drag(pos)
 			else:
 				opened_building = target.id
 				var building = buildings[opened_building]

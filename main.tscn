@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=30 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
-[ext_resource type="PackedScene" uid="uid://c4f6x77gcvxkh" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
+[ext_resource type="PackedScene" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
 [ext_resource type="Shader" uid="uid://b71as4grbjdsv" path="res://assets/fx/water.tres" id="3_y1gkv"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_sehsk"]
@@ -61,6 +61,7 @@ shader = ExtResource("3_y1gkv")
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_i71he")
+mouse_line_height = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dmssy")
@@ -101,9 +102,6 @@ visible = false
 
 [node name="Arrow" type="Node3D" parent="."]
 visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Arrow"]
-mesh = SubResource("PlaneMesh_3v0s3")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.679507, 0.0448353, -0.732298, 0.311897, 0.885792, 0.343646, 0.664071, -0.461911, 0.587918, -5.4034, 11.2583, 17.4314)

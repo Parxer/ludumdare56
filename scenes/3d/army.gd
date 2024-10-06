@@ -5,11 +5,13 @@ var speed := 0.0
 var spawner: Area3D
 var target: Vector3
 
+const SPAWN_HEIGHT = 1
+
 func initialize(init_speed: float, init_spawner: Building, init_target: Vector3) -> void:
 	spawner = init_spawner
-	position = spawner.position
+	position = Vector3(spawner.position.x, SPAWN_HEIGHT, spawner.position.z)
 	speed = init_speed
-	target = init_target
+	target = Vector3(init_target.x, SPAWN_HEIGHT, init_target.z)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
