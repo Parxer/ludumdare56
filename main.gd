@@ -124,6 +124,28 @@ func stop_drag():
 		
 
 func spawn_army(spawner: Building, target: Vector3) -> void:
+	var army_size = 30
+	var spawn_delay = 0.1
+
+	for i in range(army_size):
+		var timer = Timer.new()
+		timer.wait_time = spawn_delay * i * randf_range(0.1,2)
+		timer.one_shot = true
+		
+		var random_offset = Vector3(
+			randf_range(-0.5, 0.5),
+			randf_range(-0.2,0.2),
+			randf_range(-0.5, 0.5)
+		)
+		var varied_target = target + random_offset
+
+		timer.timeout.connect(func() -> void:
+			spawn_troop(spawner, varied_target)
+		)
+		add_child(timer)
+		timer.start()
+
+func spawn_troop(spawner: Building, target: Vector3) -> void:
 	var new_army = army_scene.instantiate()
 	new_army.initialize(5.0, spawner, target)
 	get_tree().current_scene.add_child(new_army)
