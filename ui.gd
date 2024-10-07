@@ -11,6 +11,6 @@ func _process(delta):
 	pass
 
 
-
 func _on_play_pressed():
 	hide()
+	AudioManager.play_attack()
