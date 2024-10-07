@@ -1,7 +1,5 @@
 class_name Troop extends Area3D
 
-signal building_entered
-
 @onready var collider = $CollisionShape3D
 var speed := 0.0
 var spawner: Area3D

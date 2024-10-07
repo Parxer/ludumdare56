@@ -1,8 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=33 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
-[ext_resource type="PackedScene" uid="uid://c4f6x77gcvxkh" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
+[ext_resource type="PackedScene" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
 [ext_resource type="Shader" uid="uid://b71as4grbjdsv" path="res://assets/fx/water.tres" id="3_y1gkv"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_sehsk"]
@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://btt3fq2w5gsis" path="res://assets/3d/env/trunk.blend" id="19_h7anx"]
 [ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="20_2ufns"]
 [ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="21_4yhy8"]
-[ext_resource type="PackedScene" uid="uid://wt0pp8xi2r6e" path="res://scenes/3d/mushroom_2.tscn" id="22_w4j3a"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="23_xaly8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38rp7"]
@@ -300,24 +299,24 @@ parameters/looping = true
 
 [node name="Building" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6711, 0, -4.73355)
-mesh_scene = ExtResource("22_w4j3a")
 
 [node name="Building2" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75645, 0, 7.76372)
 
 [node name="Building3" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(0.841894, 0.109672, 0.528381, -0.129177, 0.991622, -1.8662e-07, -0.523954, -0.0682545, 0.849007, 10.7408, 0, 1.62634)
+team = 1
 
 [node name="Building4" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(0.706316, 4.84288e-08, 0.707897, 0.0798046, 0.993625, -0.0796265, -0.703384, 0.112735, 0.701813, 1.27461, -9.53674e-07, 12.4355)
-mesh_scene = ExtResource("22_w4j3a")
+team = 1
 
 [node name="Building5" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503, -3.41444, 0, -1.22208)
-mesh_scene = ExtResource("22_w4j3a")
 
 [node name="Building6" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9641, 0, 13.9569)
+team = 1
 
 [node name="WinOverlay" type="VBoxContainer" parent="."]
 visible = false

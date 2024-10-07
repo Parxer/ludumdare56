@@ -2,13 +2,18 @@ class_name Building extends Area3D
 
 @onready var timer = $Timer
 @onready var value_label = $Value
-
-@export var mesh_scene = preload("res://scenes/3d/mushroom.tscn")
+@onready var player_body = $PlayerBody
+@onready var enemy_body = $EnemyBody
+@onready var collider = $CollisionShape3D
 
 @export var team = Globals.Teams.PLAYER
 
+
 const DELTA_VALUE: int = 1
 const DELTA_SCALE: float = DELTA_VALUE / 2.0
+
+const MIN_SCALE: float = 0.25
+const MAX_SCALE: float = 2.5
 
 var initial_state = {
 	"id": 0,
@@ -30,15 +35,15 @@ func initialize(init_id: int, init_value: int, init_tick: float) -> void:
 	tick = init_tick
 
 func _ready() -> void:
-	get_node("deleteme").queue_free()
+	set_team()
 	timer.start(tick)
-	var mesh_instance = 	mesh_scene.instantiate()
-	add_child(mesh_instance)
-	
 
 func update_scale() -> void:
 	var scale_diff = (float(value) / initial_state.value)
-	scale = Vector3.ONE * scale_diff
+	var new_scale = Vector3.ONE * scale_diff
+	player_body.scale = new_scale
+	enemy_body.scale = new_scale
+	scale = Vector3(new_scale.x, 1, new_scale.z)
 
 func _on_timer_timeout() -> void:
 	value += 1
@@ -59,7 +64,14 @@ func troop_entered(troop: Troop):
 	else:
 		var new_value = value - troop.strength
 		if new_value <= 0:
-			value = abs(new_value) + 1
-			team = troop.team
+			new_value = abs(new_value) + 1
+			set_team(troop.team)
+		else:
+			value = new_value
 	_process_tick()
 	timer.start()
+
+func set_team(new_team: Globals.Teams = team) -> void:
+	team = new_team
+	player_body.visible = team == Globals.Teams.PLAYER
+	enemy_body.visible = team == Globals.Teams.ENEMY
