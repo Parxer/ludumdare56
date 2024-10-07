@@ -16,7 +16,7 @@ var is_dragging = false
 @export var default_value := 10
 @export var default_tick := 1.0
 
-var army_scene: PackedScene = preload("res://scenes/3d/army.tscn")
+var troop_scene: PackedScene = preload("res://scenes/3d/troop.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,7 +54,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func handle_click() -> void:
 	var target = _get_click_collider()
 	if target:
-		if target.is_in_group("buildings"):
+		if target == overlay_collider:
+			pass
+		elif target.is_in_group("buildings"):
 			if opened_building == target.id:
 				var pos = Vector3(target.position.x, mouse_line_height, target.position.z)
 				start_drag(pos)
@@ -95,7 +97,7 @@ func _get_mouse_target():
 
 func _get_click_collider():
 	var click_target = _get_mouse_target()
-	if not click_target.is_empty() and click_target.collider != overlay_collider:
+	if not click_target.is_empty():
 		return click_target.collider
 	return null
 
@@ -146,6 +148,6 @@ func spawn_army(spawner: Building, target: Vector3) -> void:
 		timer.start()
 
 func spawn_troop(spawner: Building, target: Vector3) -> void:
-	var new_army = army_scene.instantiate()
-	new_army.initialize(5.0, spawner, target)
-	get_tree().current_scene.add_child(new_army)
+	var new_troop = troop_scene.instantiate()
+	new_troop.initialize(5.0, spawner, target)
+	get_tree().current_scene.add_child(new_troop)

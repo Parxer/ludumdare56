@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c68ojvvs0ty5e"]
 
-[ext_resource type="Script" path="res://scenes/3d/army.gd" id="1_o4xjl"]
+[ext_resource type="Script" path="res://scenes/3d/troop.gd" id="1_gug2n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qecu2"]
 albedo_color = Color(0.50353, 0.256261, 0.0043682, 1)
@@ -18,8 +18,8 @@ rings = 2
 [sub_resource type="SphereShape3D" id="SphereShape3D_w662f"]
 radius = 0.15
 
-[node name="Army" type="Area3D"]
-script = ExtResource("1_o4xjl")
+[node name="Troop" type="Area3D"]
+script = ExtResource("1_gug2n")
 
 [node name="Light" type="OmniLight3D" parent="."]
 visible = false
