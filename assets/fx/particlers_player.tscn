@@ -8,8 +8,8 @@ ao_light_affect = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_8vaco"]
 material = SubResource("StandardMaterial3D_54rqp")
-radius = 0.05
-height = 0.1
+radius = 0.1
+height = 0.2
 radial_segments = 8
 rings = 2
 
@@ -35,6 +35,7 @@ scale_amount_min = 0.0
 scale_amount_curve = SubResource("Curve_gqwq4")
 
 [node name="Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0220898, 0)
 light_color = Color(0.815162, 0.737478, 0.688869, 1)
 light_energy = 2.0
 light_indirect_energy = 2.0

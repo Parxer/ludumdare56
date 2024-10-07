@@ -1,14 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://wt0pp8xi2r6e"]
+[gd_scene load_steps=3 format=3 uid="uid://wt0pp8xi2r6e"]
 
 [ext_resource type="PackedScene" uid="uid://bwsjv7ar6qosf" path="res://assets/3d/env/mushroom2.blend" id="1_ecfj1"]
 [ext_resource type="PackedScene" uid="uid://cnyk7ubykhqy5" path="res://assets/fx/particlers_player.tscn" id="2_u50cw"]
-[ext_resource type="PackedScene" uid="uid://brgyewcipkhpf" path="res://assets/fx/particles_enemy.tscn" id="3_yq87b"]
 
 [node name="mushroom2" instance=ExtResource("1_ecfj1")]
 
 [node name="Particles_player" parent="." index="1" instance=ExtResource("2_u50cw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08051, 0)
-visible = false
-
-[node name="Particles_enemy" parent="." index="2" instance=ExtResource("3_yq87b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01589, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144755, 0.96486, 0)

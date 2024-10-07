@@ -3,3 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://lxqbflweifsb" path="res://assets/3d/env/mushroom3.blend" id="1_4aa55"]
 
 [node name="mushroom3" instance=ExtResource("1_4aa55")]
+
+[node name="Light" type="OmniLight3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04557, -0.028612)
+light_color = Color(0.858009, 0.702588, 0.787731, 1)
+light_energy = 1.5
+light_indirect_energy = 2.0
+light_volumetric_fog_energy = 2.0
+light_size = 0.293
+shadow_enabled = true

@@ -1,11 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=34 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
-[ext_resource type="PackedScene" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
 [ext_resource type="Shader" uid="uid://b71as4grbjdsv" path="res://assets/fx/water.tres" id="3_y1gkv"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_sehsk"]
+[ext_resource type="PackedScene" uid="uid://cjvuneu1wyfci" path="res://assets/3d/env/ground.tscn" id="5_ltrys"]
 [ext_resource type="PackedScene" uid="uid://6ssgov0rypyd" path="res://assets/3d/env/tree2.blend" id="7_52582"]
 [ext_resource type="PackedScene" uid="uid://byno87xegiybr" path="res://assets/3d/env/tree.blend" id="8_ginwt"]
 [ext_resource type="PackedScene" uid="uid://bfsu5x4sfowam" path="res://assets/3d/env/tree3.blend" id="9_duuvn"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dohkdhxs0jqff" path="res://assets/3d/env/bush.blend" id="17_rk1bl"]
 [ext_resource type="PackedScene" uid="uid://dyrc7oeqgwkk3" path="res://assets/3d/env/stump.blend" id="18_tscgk"]
 [ext_resource type="PackedScene" uid="uid://btt3fq2w5gsis" path="res://assets/3d/env/trunk.blend" id="19_h7anx"]
+[ext_resource type="PackedScene" uid="uid://3s3trdbxh8mu" path="res://assets/3d/env/tree6.blend" id="19_r4vm1"]
 [ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="20_2ufns"]
 [ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="21_4yhy8"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="23_xaly8"]
@@ -46,12 +47,13 @@ fog_light_energy = 0.01
 volumetric_fog_emission = Color(0.807429, 0.670822, 0.637147, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_411ra"]
+exposure_multiplier = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a0rhw"]
 size = Vector3(64.7058, 1, 77.7242)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q5c8x"]
-size = Vector2(30, 30)
+size = Vector2(28.48, 27.22)
 subdivide_width = 20
 subdivide_depth = 20
 
@@ -81,14 +83,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8422, 0, 20.1605)
 shape = SubResource("BoxShape3D_a0rhw")
 
-[node name="ground" parent="Ground" instance=ExtResource("2_1m02n")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.0932, 0.0499998, 1.01476)
-
 [node name="water" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99367, -1.69412, 2.15919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39997, -1.69412, 5.94156)
 mesh = SubResource("PlaneMesh_q5c8x")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_vi2i2")
+
+[node name="boulder" parent="Ground" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(1.77612, 0, -0.370747, 0.0872472, 1.21483, 0.275578, 0.44818, -0.236492, 1.41561, 7.31364, -0.0555463, 2.09417)
+
+[node name="ground" parent="Ground" instance=ExtResource("5_ltrys")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.0932, 0.0499998, 1.01476)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.694169, 0.452358, -0.559913, 0, 0.777859, 0.628438, 0.719813, -0.436242, 0.539966, -21.4759, 14.4368, 0)
@@ -97,7 +102,7 @@ light_color = Color(1, 0.921569, 0.858824, 1)
 light_energy = 1.5
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.529919, 0.599661, -0.599661, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.37471, -12.32, 20, -4.82)
+transform = Transform3D(-0.529919, 0.599661, -0.599661, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.374709, -12.32, 20, -4.82)
 fov = 45.0
 size = 11.98
 near = 1.0
@@ -135,7 +140,7 @@ transform = Transform3D(-0.338148, 0, 1.97121, 0, 2, 0, -1.97121, 0, -0.338148, 
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.71397, -9.53674e-07, 9.4838)
 
 [node name="tree6" parent="Assets" instance=ExtResource("9_duuvn")]
-transform = Transform3D(0.891552, 0, 1.79029, 0, 2, 0, -1.79029, 0, 0.891552, 8.98031, 0, -1.12294)
+transform = Transform3D(0.266969, 0, 1.9821, 0, 2, 0, -1.9821, 0, 0.266969, 9.67961, 0, -2.70579)
 
 [node name="tree17" parent="Assets" instance=ExtResource("7_52582")]
 transform = Transform3D(-2.10632, 0, -1.34663, 0, 2.5, 0, 1.34663, 0, -2.10632, 16.0667, 0, -5.24151)
@@ -278,6 +283,33 @@ transform = Transform3D(1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, 1.41421, 15.2
 [node name="bush5" parent="Assets" instance=ExtResource("17_rk1bl")]
 transform = Transform3D(1.13889, 0.129403, 0.967562, -0.0986189, 1.49441, -0.0837829, -0.971183, 0, 1.14316, -1.87512, 0, 13.3562)
 
+[node name="tree22" parent="Assets" instance=ExtResource("7_52582")]
+transform = Transform3D(1.75343, 0, -2.43423, 0, 3, 0, 2.43423, 0, 1.75343, -3.76314, 0.45, 17.9479)
+
+[node name="tree23" parent="Assets" instance=ExtResource("11_p776n")]
+transform = Transform3D(-1.96474, 0.139057, -0.347071, 0.137398, 1.99516, 0.0215778, 0.347731, -0.00264607, -1.96954, 11.0908, 0.45, 22.7501)
+
+[node name="grass13" parent="Assets" instance=ExtResource("13_qmew1")]
+transform = Transform3D(2.12132, 0, -2.12132, 0, 3, 0, 2.12132, 0, 2.12132, 6.64982, 0.45, 23.8788)
+
+[node name="tree24" parent="Assets" instance=ExtResource("7_52582")]
+transform = Transform3D(0.142516, 0, -2.49593, 0, 2.5, 0, 2.49593, 0, 0.142516, 22.4419, 0.45, 9.40431)
+
+[node name="bush6" parent="Assets" instance=ExtResource("17_rk1bl")]
+transform = Transform3D(0.498698, 0, 1.93683, 0, 2, 0, -1.93683, 0, 0.498698, -1.12226, 0.45, 22.3547)
+
+[node name="tree25" parent="Assets" instance=ExtResource("9_duuvn")]
+transform = Transform3D(1.5, 0, 0, 0, 1.49527, 0.118994, 0, -0.118994, 1.49527, 22.0948, 0.45, 6.83818)
+
+[node name="tree26" parent="Assets" instance=ExtResource("8_ginwt")]
+transform = Transform3D(0.590943, -5.96046e-09, 0.539246, 0.0776666, 0.791659, -0.0851124, -0.533624, 0.115222, 0.584782, 21.3924, 0.367195, 11.6845)
+
+[node name="tree27" parent="Assets" instance=ExtResource("19_r4vm1")]
+transform = Transform3D(1.86485, -0.057584, -0.720437, 0.0928066, 1.99622, 0.0806727, 0.716758, -0.108652, 1.86399, 1.88956, 0.45, 20.0907)
+
+[node name="tree28" parent="Assets" instance=ExtResource("19_r4vm1")]
+transform = Transform3D(0.746188, 0, 1.30123, 0, 1.5, 0, -1.30123, 0, 0.746188, -5.74658, 0.45, -3.77785)
+
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Building" parent="Buildings" instance=ExtResource("3_hh5b1")]
@@ -413,3 +445,56 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
 text = " Quit "
+
+[node name="Border" type="Node" parent="."]
+
+[node name="boulder2" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(8.00885, 0, 5.42477, 0, 10, 0, -5.64648, 0, 7.69438, -8.8719, -3.77724, -10.3886)
+
+[node name="boulder17" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(1.59327, 0, -1.05101, 0, 2, 0, 0.992725, 0, 1.68681, -8.69942, -0.192239, -3.13831)
+
+[node name="boulder3" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(9.13418, -2.41188, -0.138592, -1.46425e-08, 0.546808, -9.97085, 2.33439, 9.43741, 0.542296, -12.7002, 0, -3.70607)
+
+[node name="boulder" parent="Border" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(-0.190987, 9.32595, 2.24699, -9.99366, -0.240215, 0.210811, 0.274134, -2.2598, 9.25065, -14.9861, 0.45, 8.7959)
+
+[node name="boulder4" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(-2.64752, 0, 9.06991, 0, 10, 0, -9.40374, 0, -2.55353, -13.1444, -3.77724, 17.7093)
+
+[node name="boulder5" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(7.07244, 6.4527, 0.369746, -1.34871e-08, 0.548451, -9.97271, -6.22094, 7.33591, 0.420355, -8.2004, 0, 21.7629)
+
+[node name="boulder14" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(-0.0274901, -9.15855, -2.68701, 0.263108, -2.5898, 9.49773, -9.61997, -0.0446601, 0.267443, 11.4993, 0, -14.3571)
+
+[node name="boulder6" parent="Border" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(-0.225986, -0.977754, 9.41638, 10.0096, -4.22813e-07, 0.214787, -0.0229544, 9.6258, 0.956481, 1.87272, 0.45, 25.2341)
+
+[node name="boulder7" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(-2.75603, 0, -9.02301, 0, 10, 0, 9.47456, 0, -2.62467, 25.2417, -3.77724, 20.119)
+
+[node name="boulder8" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(-9.3684, 1.3193, 0.0762653, -2.32204e-08, 0.543349, -9.96728, -1.28898, -9.58879, -0.554304, 26.4783, 0, 15.7153)
+
+[node name="boulder13" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(-3.54937, 8.52398, -2.24983, 1.00758, -1.8713, -9.84724, -9.1074, -3.52903, -0.212621, 14.1025, 0, 27.9804)
+
+[node name="boulder9" parent="Border" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(0.158679, -9.06205, -3.26626, -9.9913, -0.241601, 0.209925, -0.293929, 3.32036, -8.89912, 28.3834, 0.45, 3.2515)
+
+[node name="boulder15" parent="Border" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(-0.414684, 3.75195, -13.6643, 14.7765, -1.7219, -0.844478, -1.92152, -14.0512, -3.54516, 7.74723, 0.45, 30.8163)
+
+[node name="boulder10" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(6.6919, 0, -6.89032, 0, 10, 0, 7.2074, 0, 6.39749, 26.689, -3.77724, -5.18301)
+
+[node name="boulder16" parent="Border" instance=ExtResource("16_xopq4")]
+transform = Transform3D(3.72021, 0, -8.70376, 0, 10, 0, 9.1043, 0, 3.55654, -1.76804, -3.77724, -15.8869)
+
+[node name="boulder11" parent="Border" instance=ExtResource("14_r5e5c")]
+transform = Transform3D(-5.00633, -8.23026, -0.474548, -1.97553e-08, 0.544846, -9.96905, 8.00932, -5.14443, -0.296622, 22.7786, 0, -7.65988)
+
+[node name="boulder12" parent="Border" instance=ExtResource("15_ge4pu")]
+transform = Transform3D(0.192002, 5.13864, -8.03306, 10.0086, -4.20828e-07, 0.215646, 0.121336, -8.13136, -5.07653, 13.2137, 0.45, -10.182)
