@@ -71,6 +71,7 @@ bg_color = Color(0.968627, 0.968627, 0.968627, 0.117647)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_i71he")
+default_player_value = 150
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_dmssy")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://building.gd" id="1_nfi6j"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="2_3ds0x"]
 [ext_resource type="PackedScene" uid="uid://51cl4knnilda" path="res://scenes/3d/mushroom.tscn" id="3_tmxil"]
-[ext_resource type="Material" path="res://assets/fx/building.tres" id="4_0no5v"]
+[ext_resource type="Material" uid="uid://c15twwknuejor" path="res://assets/fx/building.tres" id="4_0no5v"]
 [ext_resource type="PackedScene" uid="uid://wt0pp8xi2r6e" path="res://scenes/3d/mushroom_2.tscn" id="4_jt278"]
 [ext_resource type="PackedScene" uid="uid://ccjcydapxe70x" path="res://scenes/3d/mushroom_3.tscn" id="5_jw3rr"]
 [ext_resource type="AudioStream" uid="uid://c50d37tjoc26r" path="res://sound/poof.mp3" id="5_km2ro"]
