@@ -14,7 +14,9 @@ var buildings: Array[Building] = []
 var selected_building_id := -1
 var is_dragging = false
 
-@export var default_value := 10
+@export var default_player_value := 15
+@export var default_enemy_value := 25
+@export var default_neutral_value := 20
 @export var default_tick := 1.0
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,13 @@ func _ready() -> void:
 	var building_nodes = get_tree().get_nodes_in_group("buildings")
 	for i in range(building_nodes.size()):
 		var building: Building = building_nodes[i]
+		
+		var default_value = default_neutral_value
+		if building.team == Globals.Teams.PLAYER:
+			default_value = default_player_value
+		if building.team == Globals.Teams.ENEMY:
+			default_value = default_enemy_value
+			
 		building.initialize(i, default_value, default_tick)
 		buildings.append(building)
 	
