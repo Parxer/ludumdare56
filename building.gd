@@ -41,9 +41,14 @@ func _ready() -> void:
 func update_scale() -> void:
 	var scale_diff = (float(value) / initial_state.value)
 	var new_scale = Vector3.ONE * scale_diff
-	player_body.scale = new_scale
-	enemy_body.scale = new_scale
-	scale = Vector3(new_scale.x, 1, new_scale.z)
+	if scale_diff <= 1:
+		scale = Vector3.ONE
+		player_body.scale = new_scale
+		enemy_body.scale = new_scale
+	else:
+		player_body.scale = Vector3.ONE
+		enemy_body.scale = Vector3.ONE
+		scale = new_scale
 
 func _on_timer_timeout() -> void:
 	value += 1
