@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=34 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
-[ext_resource type="PackedScene" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
+[ext_resource type="PackedScene" uid="uid://c4f6x77gcvxkh" path="res://assets/3d/env/ground.tscn" id="2_1m02n"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="3_hh5b1"]
 [ext_resource type="Shader" uid="uid://b71as4grbjdsv" path="res://assets/fx/water.tres" id="3_y1gkv"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_sehsk"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="20_2ufns"]
 [ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="21_4yhy8"]
 [ext_resource type="PackedScene" uid="uid://wt0pp8xi2r6e" path="res://scenes/3d/mushroom_2.tscn" id="22_w4j3a"]
+[ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="23_xaly8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38rp7"]
 sky_top_color = Color(0.589032, 0.402625, 0.224484, 1)
@@ -58,6 +59,13 @@ subdivide_depth = 20
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vi2i2"]
 render_priority = 0
 shader = ExtResource("3_y1gkv")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gu5rq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mpdi"]
+bg_color = Color(0.968627, 0.968627, 0.968627, 0.117647)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_way5q"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_i71he")
@@ -119,7 +127,7 @@ transform = Transform3D(1.3421, 0, 1.48283, 0, 2, 0, -1.48283, 0, 1.3421, 3.4511
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -4.39866, 0, 2.08796)
 
 [node name="tree3" parent="Assets" instance=ExtResource("8_ginwt")]
-transform = Transform3D(-0.528082, 0, -1.92902, 0, 2, 0, 1.92902, 0, -0.528082, 5.75533, 0.342845, -4.60175)
+transform = Transform3D(-0.528082, 0, -1.92902, 0, 2, 0, 1.92902, 0, -0.528082, 8.44772, 0.342845, -8.69078)
 
 [node name="tree4" parent="Assets" instance=ExtResource("8_ginwt")]
 transform = Transform3D(-0.338148, 0, 1.97121, 0, 2, 0, -1.97121, 0, -0.338148, 15.2718, 0, 7.06789)
@@ -280,6 +288,7 @@ omni_range = 18.966
 omni_attenuation = 0.0
 
 [node name="UI" parent="." instance=ExtResource("20_2ufns")]
+visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_4yhy8")
@@ -290,7 +299,7 @@ parameters/looping = true
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Building" parent="Buildings" instance=ExtResource("3_hh5b1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0132, 0, 1.59708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6711, 0, -4.73355)
 mesh_scene = ExtResource("22_w4j3a")
 
 [node name="Building2" parent="Buildings" instance=ExtResource("3_hh5b1")]
@@ -309,3 +318,99 @@ mesh_scene = ExtResource("22_w4j3a")
 
 [node name="Building6" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9641, 0, 13.9569)
+
+[node name="WinOverlay" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -186.0
+offset_right = 289.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win" type="Label" parent="WinOverlay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 200
+text = "You won!"
+
+[node name="Buttons" type="VBoxContainer" parent="WinOverlay"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play again" type="Button" parent="WinOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
+text = " Play again"
+
+[node name="Quit" type="Button" parent="WinOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
+text = " Quit "
+
+[node name="LooseOverlay" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -186.0
+offset_right = 289.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Loose" type="Label" parent="LooseOverlay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 200
+text = "You lost!"
+
+[node name="Buttons" type="VBoxContainer" parent="LooseOverlay"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play again" type="Button" parent="LooseOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
+text = " Play again"
+
+[node name="Quit" type="Button" parent="LooseOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
+text = " Quit "
