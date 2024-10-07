@@ -35,9 +35,11 @@ func initialize(init_id: int, init_value: int, init_tick: float) -> void:
 	value = init_value
 	tick = init_tick
 
+	_process_tick(value)
+
 func _ready() -> void:
 	set_team()
-	timer.start(tick)
+	_start_timer()
 
 func update_scale() -> void:
 	var scale_diff = 1 + ((float(value) / initial_state.value) - 1) * DELTA_SCALE
@@ -56,14 +58,14 @@ func _on_timer_timeout() -> void:
 	value += 1
 	_process_tick()
 
-func _process_tick() -> void:
-	value_label.text = String.num_int64(value)
+func _process_tick(new_value: int = value) -> void:
+	value_label.text = String.num_int64(new_value)
 	update_scale()
 
 func halve():
 	value /= 2
 	_process_tick()
-	timer.start()
+	_start_timer()
 
 func troop_entered(troop: Troop):
 	if troop.team == team:
@@ -78,7 +80,11 @@ func troop_entered(troop: Troop):
 		else:
 			value = new_value
 	_process_tick()
-	timer.start()
+	_start_timer()
+
+func _start_timer():
+	if not team == Globals.Teams.NEUTRAL:
+		timer.start(tick)
 
 func set_team(new_team: Globals.Teams = team) -> void:
 	team = new_team
