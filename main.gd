@@ -70,9 +70,14 @@ func check_win_condition():
 	if not is_player_alive:
 		$LoseOverlay.show()
 		Globals.game_ended.emit()
+		AudioManager.play_game_over()
+		AudioManager.stop_music()
+		
 	elif not is_enemy_alive:
 		$WinOverlay.show()
 		Globals.game_ended.emit()
+		AudioManager.play_win()
+		AudioManager.stop_music()
 
 func handle_click() -> void:
 	var target = _get_click_collider()

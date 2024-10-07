@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhusjim6ncwtn"]
+[gd_scene load_steps=10 format=3 uid="uid://bhusjim6ncwtn"]
 
 [ext_resource type="Script" path="res://audio_manager.gd" id="1_3kk0f"]
 [ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="2_ubcxe"]
@@ -7,6 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://df6sl7ss8yklx" path="res://sound/shroom1.mp3" id="4_d0bte"]
 [ext_resource type="AudioStream" uid="uid://chb1o6h7w0tki" path="res://sound/bg_music.mp3" id="4_f53hy"]
 [ext_resource type="AudioStream" uid="uid://dkpuryb2spgp8" path="res://sound/shroom2.mp3" id="5_omm60"]
+[ext_resource type="AudioStream" uid="uid://cyax6u5xhskhu" path="res://sound/win.mp3" id="8_qre2p"]
+[ext_resource type="AudioStream" uid="uid://cd2rs3q8doqx3" path="res://sound/game_over.mp3" id="9_ag7l0"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_3kk0f")
@@ -33,3 +35,9 @@ stream = ExtResource("4_d0bte")
 
 [node name="Shroom2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_omm60")
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_qre2p")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ag7l0")
