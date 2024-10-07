@@ -10,7 +10,7 @@ var mouse_line: MeshInstance3D
 @export var mouse_line_height := 0.5
 
 var buildings: Array[Building] = []
-var opened_building := -1
+var selected_building_id := -1
 var is_dragging = false
 
 @export var default_value := 10
@@ -46,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 	elif event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
-			if opened_building > -1:
+			if selected_building_id > -1:
 				close_overlay()
 			else:
 				pass
@@ -57,13 +57,18 @@ func handle_click() -> void:
 		if target == overlay_collider:
 			pass
 		elif target.is_in_group("buildings"):
-			if opened_building == target.id:
+			if target is not Building:
+				return
+			if target.team == Globals.Teams.PLAYER:
+				selected_building_id = target.id
+					
+			if selected_building_id == target.id:
 				var pos = Vector3(target.position.x, mouse_line_height, target.position.z)
 				start_drag(pos)
-			else:
-				opened_building = target.id
-				var building = buildings[opened_building]
-				open_overlay(building)
+			#else:
+				#selected_building_id = target.id
+				#var building = buildings[selected_building_id]
+				#open_overlay(building)
 		else:
 			close_overlay()
 	else:
@@ -80,7 +85,7 @@ func handle_drag():
 		else:
 			mouse_pos = drag_target.position
 		
-		Draw3d.line(buildings[opened_building].position, Vector3(mouse_pos.x, mouse_line_height, mouse_pos.z), color, 1)
+		Draw3d.line(buildings[selected_building_id].position, Vector3(mouse_pos.x, mouse_line_height, mouse_pos.z), color, 1)
 
 func _get_mouse_target():
 	var space_state = get_world_3d().direct_space_state
@@ -108,7 +113,7 @@ func open_overlay(building) -> void:
 
 
 func close_overlay() -> void:
-	opened_building = -1
+	selected_building_id = -1
 	overlay.visible = false
 
 	
@@ -120,9 +125,11 @@ func stop_drag():
 	is_dragging = false
 	
 	var target = _get_click_collider()
-	if target and target.is_in_group("buildings") and target.id != opened_building:
-		var origin = buildings[opened_building]
+	if target and target.is_in_group("buildings") and target.id != selected_building_id:
+		var origin = buildings[selected_building_id]
 		spawn_army(origin, target.position)
+		
+	selected_building_id = -1
 		
 
 func spawn_army(spawner: Building, target: Vector3) -> void:
@@ -133,7 +140,7 @@ func spawn_army(spawner: Building, target: Vector3) -> void:
 
 	for i in range(army_size):
 		var timer = Timer.new()
-		timer.wait_time = spawn_delay * i * randf_range(0.1,2)
+		timer.wait_time = spawn_delay * i + 0.1 * randf_range(0.1,2)
 		timer.one_shot = true
 		
 		var random_offset = Vector3(
@@ -143,9 +150,8 @@ func spawn_army(spawner: Building, target: Vector3) -> void:
 		)
 		var varied_target = target + random_offset
 
-		timer.timeout.connect(func() -> void:
-			spawn_troop(spawner, varied_target)
-		)
+		timer.timeout.connect(spawn_troop.bind(spawner, varied_target))
+		
 		add_child(timer)
 		timer.start()
 

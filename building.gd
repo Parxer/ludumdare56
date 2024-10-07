@@ -41,7 +41,6 @@ func _ready() -> void:
 
 func update_scale() -> void:
 	var scale_diff = 1 + ((float(value) / initial_state.value) - 1) * DELTA_SCALE
-	print_debug(scale_diff)
 	var new_scale = Vector3.ONE * clampf(scale_diff, MIN_SCALE, MAX_SCALE)
 	if scale_diff <= 1:
 		scale = Vector3.ONE
