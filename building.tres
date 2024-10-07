@@ -1,7 +1,8 @@
-[gd_resource type="VisualShader" load_steps=23 format=3 uid="uid://8h5xphi4bhn3"]
+[gd_resource type="VisualShader" load_steps=24 format=3 uid="uid://8h5xphi4bhn3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lfi6d"]
-frequency = 0.0003
+noise_type = 2
+frequency = 0.0001
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0yx23"]
 noise = SubResource("FastNoiseLite_lfi6d")
@@ -21,17 +22,17 @@ gradient = SubResource("Gradient_mdp24")
 output_port_for_preview = 0
 texture = SubResource("GradientTexture1D_krxl1")
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_64ixr"]
-expanded_output_ports = [0]
-texture = SubResource("NoiseTexture2D_0yx23")
-texture_type = 1
-
 [sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_aovcl"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_bde34"]
 output_port_for_preview = 0
 expanded_output_ports = [0]
 input_name = "color"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_jdany"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_082qk"]
+default_input_values = [0, 0.5, 1, 0.0]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_o5n3u"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0.3, 0.5)]
@@ -82,9 +83,6 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_s
 uniform float CloudSpeed;
 uniform sampler2D tex_vtx_5 : source_color;
 uniform float CloudType;
-uniform sampler2D tex_frg_2 : source_color;
-uniform sampler2D tex_frg_3;
-uniform sampler2D tex_frg_4 : source_color;
 
 
 
@@ -143,13 +141,8 @@ void vertex() {
 }
 
 void fragment() {
-// Texture2D:2
-	vec4 n_out2p0 = texture(tex_frg_2, UV);
-	float n_out2p1 = n_out2p0.r;
-
-
-// Texture2D:3
-	vec4 n_out3p0 = texture(tex_frg_3, vec2(n_out2p1));
+// ColorConstant:7
+	vec4 n_out7p0 = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 
 
 // Input:6
@@ -157,23 +150,20 @@ void fragment() {
 	float n_out6p4 = n_out6p0.a;
 
 
-// Texture2D:4
-	vec4 n_out4p0 = texture(tex_frg_4, UV);
-	float n_out4p1 = n_out4p0.r;
-
-
 // SmoothStep:5
 	float n_in5p1 = 1.00000;
-	float n_out5p0 = smoothstep(n_out6p4, n_in5p1, n_out4p1);
+	float n_in5p2 = 0.50000;
+	float n_out5p0 = smoothstep(n_out6p4, n_in5p1, n_in5p2);
 
 
 // Output:0
-	ALBEDO = vec3(n_out3p0.xyz);
+	ALBEDO = vec3(n_out7p0.xyz);
 	ALPHA = n_out5p0;
 
 
 }
 "
+graph_offset = Vector2(-377.465, 78.3403)
 nodes/vertex/0/position = Vector2(980, 500)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_xyxka")
 nodes/vertex/2/position = Vector2(-1100, 140)
@@ -199,13 +189,15 @@ nodes/vertex/12/node = SubResource("VisualShaderNodeFloatParameter_ab3lp")
 nodes/vertex/12/position = Vector2(-4480, 1380)
 nodes/vertex/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 6, 0, 4, 1, 5, 1, 7, 0, 7, 0, 6, 1, 8, 0, 5, 0, 9, 0, 10, 0, 3, 0, 6, 0, 11, 0, 7, 1, 12, 0, 10, 1, 10, 0, 8, 0)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_re2ue")
-nodes/fragment/2/position = Vector2(-1700, 280)
+nodes/fragment/2/position = Vector2(-2240, -140)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_2fuj3")
-nodes/fragment/3/position = Vector2(-820, 160)
-nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_64ixr")
-nodes/fragment/4/position = Vector2(-2740, 1420)
+nodes/fragment/3/position = Vector2(-1520, -160)
 nodes/fragment/5/node = SubResource("VisualShaderNodeSmoothStep_aovcl")
-nodes/fragment/5/position = Vector2(-1160, 1200)
+nodes/fragment/5/position = Vector2(-1700, 820)
 nodes/fragment/6/node = SubResource("VisualShaderNodeInput_bde34")
-nodes/fragment/6/position = Vector2(-2800, 560)
-nodes/fragment/connections = PackedInt32Array(2, 1, 3, 0, 3, 0, 0, 0, 4, 1, 5, 2, 5, 0, 0, 1, 6, 4, 5, 0)
+nodes/fragment/6/position = Vector2(-2800, 960)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorConstant_jdany")
+nodes/fragment/7/position = Vector2(-880, 440)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatOp_082qk")
+nodes/fragment/8/position = Vector2(-619.575, 1174.03)
+nodes/fragment/connections = PackedInt32Array(2, 1, 3, 0, 5, 0, 0, 1, 6, 4, 5, 0, 7, 0, 0, 0)
