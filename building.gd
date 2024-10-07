@@ -11,10 +11,9 @@ class_name Building extends Area3D
 @export var team = Globals.Teams.PLAYER
 
 
-const DELTA_VALUE: int = 1
-const DELTA_SCALE: float = DELTA_VALUE / 2.0
+const DELTA_SCALE: float = 0.1
 
-const MIN_SCALE: float = 0.25
+const MIN_SCALE: float = 0.5
 const MAX_SCALE: float = 2.5
 
 var initial_state = {
@@ -41,8 +40,9 @@ func _ready() -> void:
 	timer.start(tick)
 
 func update_scale() -> void:
-	var scale_diff = (float(value) / initial_state.value)
-	var new_scale = Vector3.ONE * scale_diff
+	var scale_diff = 1 + ((float(value) / initial_state.value) - 1) * DELTA_SCALE
+	print_debug(scale_diff)
+	var new_scale = Vector3.ONE * clampf(scale_diff, MIN_SCALE, MAX_SCALE)
 	if scale_diff <= 1:
 		scale = Vector3.ONE
 		player_body.scale = new_scale
