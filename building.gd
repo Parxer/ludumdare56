@@ -4,6 +4,8 @@ class_name Building extends Area3D
 @onready var value_label = $Value
 @onready var player_body = $PlayerBody
 @onready var enemy_body = $EnemyBody
+@onready var neutral_body = $NeutralBody
+
 @onready var collider = $CollisionShape3D
 
 @export var team = Globals.Teams.PLAYER
@@ -48,6 +50,7 @@ func update_scale() -> void:
 	else:
 		player_body.scale = Vector3.ONE
 		enemy_body.scale = Vector3.ONE
+		neutral_body.scale = Vector3.ONE
 		scale = new_scale
 
 func _on_timer_timeout() -> void:
@@ -82,3 +85,4 @@ func set_team(new_team: Globals.Teams = team) -> void:
 	team = new_team
 	player_body.visible = team == Globals.Teams.PLAYER
 	enemy_body.visible = team == Globals.Teams.ENEMY
+	neutral_body.visible = team == Globals.Teams.NEUTRAL
