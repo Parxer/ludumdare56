@@ -24,10 +24,10 @@ func initialize(init_speed: float, init_spawner: Building, init_target: Vector3)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#if team == Globals.Teams.PLAYER:
-		#mesh.set_surface_override_material(0, player_mat)
-	#else:
-	mesh.material_override = enemy_mat
+	if team == Globals.Teams.PLAYER:
+		mesh.material_override = player_mat
+	else:
+		mesh.material_override = enemy_mat
 
 func _physics_process(delta: float) -> void:
 	var direction = (target - transform.origin).normalized();
