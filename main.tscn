@@ -344,7 +344,6 @@ omni_range = 18.966
 omni_attenuation = 0.0
 
 [node name="UI" parent="." instance=ExtResource("20_2ufns")]
-visible = false
 
 [node name="WinOverlay" type="VBoxContainer" parent="."]
 visible = false
@@ -496,3 +495,20 @@ transform = Transform3D(-5.00633, -8.23026, -0.474548, -1.97553e-08, 0.544846, -
 transform = Transform3D(0.192002, 5.13864, -8.03306, 10.0086, -4.20828e-07, 0.215646, 0.121336, -8.13136, -5.07653, 13.2137, 0.45, -10.182)
 
 [node name="AudioManager" parent="." instance=ExtResource("23_hsw60")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_right = 231.0
+offset_bottom = 69.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 80
+text = "14:00:56"
+horizontal_alignment = 1

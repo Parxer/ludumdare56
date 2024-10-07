@@ -36,9 +36,13 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="Container"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_5jqf6")
-theme_override_font_sizes/font_size = 200
-text = "odrast"
+theme_override_font_sizes/font_size = 120
+text = "PIXIES of the
+GIANT'S FALL"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="Container"]
 layout_mode = 2
@@ -49,6 +53,8 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_5jqf6")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5lvv7")
@@ -60,6 +66,8 @@ text = " Play "
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_5jqf6")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5lvv7")
@@ -72,6 +80,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_5jqf6")
 theme_override_font_sizes/font_size = 30
 text = "by Parxer and Natarin"

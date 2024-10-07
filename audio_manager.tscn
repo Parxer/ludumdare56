@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhusjim6ncwtn"]
+[gd_scene load_steps=8 format=3 uid="uid://bhusjim6ncwtn"]
 
 [ext_resource type="Script" path="res://audio_manager.gd" id="1_3kk0f"]
 [ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="2_ubcxe"]
 [ext_resource type="AudioStream" uid="uid://c50d37tjoc26r" path="res://sound/poof.mp3" id="3_6lo3q"]
+[ext_resource type="AudioStream" uid="uid://xd7rkrc4tdfh" path="res://sound/pop.mp3" id="3_wm6d7"]
 [ext_resource type="AudioStream" uid="uid://df6sl7ss8yklx" path="res://sound/shroom1.mp3" id="4_d0bte"]
+[ext_resource type="AudioStream" uid="uid://chb1o6h7w0tki" path="res://sound/bg_music.mp3" id="4_f53hy"]
 [ext_resource type="AudioStream" uid="uid://dkpuryb2spgp8" path="res://sound/shroom2.mp3" id="5_omm60"]
 
 [node name="AudioManager" type="Node"]
@@ -11,8 +13,17 @@ script = ExtResource("1_3kk0f")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ubcxe")
+volume_db = -36.0
+parameters/looping = true
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wm6d7")
+volume_db = -6.0
+
+[node name="BGmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_f53hy")
+volume_db = -2.0
+parameters/looping = true
 
 [node name="Poof" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6lo3q")
