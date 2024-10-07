@@ -23,14 +23,20 @@ func _ready() -> void:
 	overlay_collider = overlay.get_collider()
 	
 	var building_nodes = get_tree().get_nodes_in_group("buildings")
-	var i = 0
-	for node in building_nodes:
-		if node is not Building:
-			pass
-		var building: Building = node
+	for i in range(building_nodes.size()):
+		var building: Building = building_nodes[i]
 		building.initialize(i, default_value, default_tick)
 		buildings.append(building)
-		i += 1
+	
+	Globals.building_team_changed.connect(_on_building_team_changed)
+	
+func _on_building_team_changed() -> void:
+	var is_player_alive = buildings.any(func(building): return building.team == Globals.Teams.PLAYER)
+	var is_enemy_alive = buildings.any(func(building): return building.team == Globals.Teams.ENEMY)
+	var is_netural_alive = buildings.any(func(building): return building.team == Globals.Teams.NEUTRAL)
+	
+	if not is_player_alive or not is_enemy_alive:
+		print_debug("Game over... You {result}!".format({ "result": "won" if is_player_alive else "lost" }))
 
 func _process(_delta) -> void:
 	if is_dragging:

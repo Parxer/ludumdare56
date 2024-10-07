@@ -10,7 +10,6 @@ class_name Building extends Area3D
 
 @export var team = Globals.Teams.PLAYER
 
-
 const DELTA_SCALE: float = 0.1
 
 const MIN_SCALE: float = 0.5
@@ -87,7 +86,12 @@ func _start_timer():
 		timer.start(tick)
 
 func set_team(new_team: Globals.Teams = team) -> void:
+	var is_changing_team = new_team != team
 	team = new_team
 	player_body.visible = team == Globals.Teams.PLAYER
 	enemy_body.visible = team == Globals.Teams.ENEMY
 	neutral_body.visible = team == Globals.Teams.NEUTRAL
+	
+	if is_changing_team:
+		Globals.building_team_changed.emit()
+	
