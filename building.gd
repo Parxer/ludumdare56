@@ -5,6 +5,8 @@ class_name Building extends Area3D
 
 @export var mesh_scene = preload("res://scenes/3d/mushroom.tscn")
 
+@export var team = Globals.Teams.PLAYER
+
 const DELTA_VALUE: int = 1
 const DELTA_SCALE: float = DELTA_VALUE / 2.0
 
@@ -40,5 +42,24 @@ func update_scale() -> void:
 
 func _on_timer_timeout() -> void:
 	value += 1
+	_process_tick()
+
+func _process_tick() -> void:
 	value_label.text = String.num_int64(value)
 	update_scale()
+
+func halve():
+	value /= 2
+	_process_tick()
+	timer.start()
+
+func troop_entered(troop: Troop):
+	if troop.team == team:
+		value += troop.strength
+	else:
+		var new_value = value - troop.strength
+		if new_value <= 0:
+			value = abs(new_value) + 1
+			team = troop.team
+	_process_tick()
+	timer.start()

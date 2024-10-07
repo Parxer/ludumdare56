@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Draw3d="*res://draw_3d.gd"
+Globals="*res://globals.gd"
 
 [file_customization]
 

@@ -126,7 +126,9 @@ func stop_drag():
 		
 
 func spawn_army(spawner: Building, target: Vector3) -> void:
-	var army_size = 30
+	var army_size: int = spawner.value / 2
+	spawner.halve()
+		
 	var spawn_delay = 0.1
 
 	for i in range(army_size):
