@@ -1,10 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckw1x2opbkn3"]
+[gd_scene load_steps=10 format=3 uid="uid://ckw1x2opbkn3"]
 
 [ext_resource type="Script" path="res://building.gd" id="1_nfi6j"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="2_3ds0x"]
 [ext_resource type="PackedScene" uid="uid://51cl4knnilda" path="res://scenes/3d/mushroom.tscn" id="3_tmxil"]
+[ext_resource type="Material" uid="uid://c15twwknuejor" path="res://assets/fx/building.tres" id="4_0no5v"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ay41e"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rl62o"]
+radius = 0.125
+height = 0.25
+radial_segments = 6
+rings = 2
+
+[sub_resource type="Curve" id="Curve_x1lwe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.976, 0.0274537), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xhu0k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.34, 0.759094), 0.0, 0.0, 0, 0, Vector2(0.888, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_34k3x"]
+offsets = PackedFloat32Array(0, 0.625, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.552941, 0.552941, 0.552941, 0, 1, 1, 1, 1)
 
 [node name="Building" type="Area3D" groups=["buildings"]]
 script = ExtResource("1_nfi6j")
@@ -24,5 +43,22 @@ font = ExtResource("2_3ds0x")
 font_size = 80
 
 [node name="deleteme" parent="." instance=ExtResource("3_tmxil")]
+
+[node name="Clouds" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.871208, 0)
+material_override = ExtResource("4_0no5v")
+amount = 20
+lifetime = 1.3
+explosiveness = 0.8
+mesh = SubResource("SphereMesh_rl62o")
+emission_shape = 1
+emission_sphere_radius = 0.2
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 0.2
+radial_accel_max = 10.0
+radial_accel_curve = SubResource("Curve_x1lwe")
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_xhu0k")
+color_ramp = SubResource("Gradient_34k3x")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
