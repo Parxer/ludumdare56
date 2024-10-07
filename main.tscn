@@ -363,6 +363,8 @@ grow_vertical = 2
 [node name="Win" type="Label" parent="WinOverlay"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 200
 text = "You won!"
@@ -376,17 +378,21 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
-text = " Play again"
+text = " Play again "
 
 [node name="Quit" type="Button" parent="WinOverlay/Buttons"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
@@ -394,7 +400,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
 text = " Quit "
 
-[node name="LooseOverlay" type="VBoxContainer" parent="."]
+[node name="LoseOverlay" type="VBoxContainer" parent="."]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -408,33 +414,39 @@ offset_bottom = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Loose" type="Label" parent="LooseOverlay"]
+[node name="Lose" type="Label" parent="LoseOverlay"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 200
 text = "You lost!"
 
-[node name="Buttons" type="VBoxContainer" parent="LooseOverlay"]
+[node name="Buttons" type="VBoxContainer" parent="LoseOverlay"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Play again" type="Button" parent="LooseOverlay/Buttons"]
+[node name="Play again" type="Button" parent="LoseOverlay/Buttons"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
-text = " Play again"
+text = " Play again "
 
-[node name="Quit" type="Button" parent="LooseOverlay/Buttons"]
+[node name="Quit" type="Button" parent="LoseOverlay/Buttons"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
 theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
@@ -515,3 +527,8 @@ theme_override_fonts/font = ExtResource("23_xaly8")
 theme_override_font_sizes/font_size = 80
 text = "14:00:56"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="WinOverlay/Buttons/Play again" to="UI" method="_on_play_again_pressed"]
+[connection signal="pressed" from="WinOverlay/Buttons/Quit" to="UI" method="_on_quit_pressed"]
+[connection signal="pressed" from="LoseOverlay/Buttons/Play again" to="UI" method="_on_play_again_pressed"]
+[connection signal="pressed" from="LoseOverlay/Buttons/Quit" to="UI" method="_on_quit_pressed"]

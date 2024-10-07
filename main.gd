@@ -32,9 +32,11 @@ func _on_building_team_changed(_old_team, _new_team) -> void:
 	var is_player_alive = buildings.any(func(building): return building.team == Globals.Teams.PLAYER)
 	var is_enemy_alive = buildings.any(func(building): return building.team == Globals.Teams.ENEMY)
 	
-	if not is_player_alive or not is_enemy_alive:
-		print_debug("Game over... You {result}!".format({ "result": "won" if is_player_alive else "lost" }))
-
+	if not is_player_alive:
+		$LoseOverlay.show()
+	elif not is_enemy_alive:
+		$WinOverlay.show()
+		
 func _process(_delta) -> void:
 	if is_dragging:
 		handle_drag()

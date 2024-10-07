@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=4 uid="uid://sicwngshktd4"]
+
+[ext_resource type="Texture2D" uid="uid://dly0cmkhk44sl" path="res://assets/textures/snow.png" id="1_bwiqw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0uoi"]
+albedo_color = Color(0.67069, 0.67069, 0.670689, 1)
+albedo_texture = ExtResource("1_bwiqw")
+uv1_scale = Vector3(1, 0.5, 2)
+uv1_triplanar = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_yfogj"]
+_surfaces = [{
+"aabb": AABB(-1.61494, 0, -1.4317, 2.99235, 1e-05, 2.93304),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("CAADAAcACAAFAAMABgAFAAgABgACAAUAAAAIAAQAAAAGAAgABAAHAAEABAAIAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("VioAALfeAAD66QAAt94AAFYqAAAzGwAA+ukAADMbAAA1igAA//8AADmKAAAAAAAAAAAAAPV8AAD//wAA9XwAAFuJAAB6hwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4nfhi"]
+resource_name = "ground2_Plane_003"
+_surfaces = [{
+"aabb": AABB(-1.61494, 0, -1.4317, 2.99235, 1e-05, 2.93304),
+"attribute_data": PackedByteArray("AAD///////8AAAAA//8AAP9/////fwAA/38AAAAA/3////9//3//f/9//38="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("CgADAAgACgAFAAMABwAGAAkABwACAAYAAAAKAAQAAAAHAAoABAAIAAEABAAKAAgA"),
+"material": SubResource("StandardMaterial3D_a0uoi"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 11,
+"vertex_data": PackedByteArray("VioAALfeXcD66QAAt95twFYqAAAzGxbA+ukAADMbG8A1igAA////vzmKAAAAAL7AOYoAAAAAvcAAAAAA9XwNwP//AAD1fBLAW4kAAHqHFsBbiQAAeocBwG7rR4oE9QlqavrWdN3zEIbc/7p/h+S7jUbyjmQT93WE4vrHdXT66XSt/KiB")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_yfogj")
+
+[node name="ground2" type="Node3D"]
+
+[node name="Plane_001" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.3387, 0, 0, 0, 13.3387, 0, 0, 0, 13.3387, -6.21788, 0, -0.984326)
+mesh = SubResource("ArrayMesh_4nfhi")
+skeleton = NodePath("")
