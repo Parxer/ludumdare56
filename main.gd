@@ -8,6 +8,7 @@ var overlay_collider: CollisionObject3D
 
 var mouse_line: MeshInstance3D
 @export var mouse_line_height := 0.5
+var mouse_line_origin := Vector3.ZERO
 
 var buildings: Array[Building] = []
 var selected_building_id := -1
@@ -27,6 +28,7 @@ func _ready() -> void:
 		buildings.append(building)
 	
 	Globals.building_team_changed.connect(_on_building_team_changed)
+	call_deferred("_init_mouse_line")
 	
 func _on_building_team_changed(_old_team, _new_team) -> void:
 	check_win_condition()
@@ -92,11 +94,23 @@ func handle_drag():
 		var mouse_pos: Vector3
 		if drag_target.collider.is_in_group("buildings"):
 			mouse_pos = drag_target.collider.position
+			mouse_pos.y = mouse_line_height
 			color = Color.LIME_GREEN
 		else:
 			mouse_pos = drag_target.position
+		_update_mouse_line(mouse_pos, color)
 		
-		Draw3d.line(buildings[selected_building_id].position, Vector3(mouse_pos.x, mouse_line_height, mouse_pos.z), color, 1)
+func _update_mouse_line(mouse_pos: Vector3, color: Color):
+	var mouse_line_immediate_mesh = mouse_line.mesh as ImmediateMesh
+	if mouse_pos != null:
+		mouse_line_immediate_mesh.clear_surfaces()
+		mouse_line_immediate_mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+		mouse_line_immediate_mesh.surface_add_vertex(mouse_line_origin)
+		mouse_line_immediate_mesh.surface_add_vertex(mouse_pos)
+		mouse_line_immediate_mesh.surface_end()		
+
+func _init_mouse_line():
+	mouse_line = await Draw3d.line(Vector3.ZERO, Vector3.ZERO)
 
 func _get_mouse_target():
 	var space_state = get_world_3d().direct_space_state
@@ -129,11 +143,13 @@ func close_overlay() -> void:
 
 	
 func start_drag(start_pos: Vector3) -> void:
+	mouse_line_origin = start_pos
+	mouse_line.visible = true
 	is_dragging = true
-	
 
 func stop_drag():
 	is_dragging = false
+	mouse_line.visible = false
 	
 	var target = _get_click_collider()
 	if target and target.is_in_group("buildings") and target.id != selected_building_id:

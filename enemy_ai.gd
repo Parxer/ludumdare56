@@ -30,7 +30,6 @@ func _on_building_team_changed(old_team, new_team) -> void:
 
 func _on_timer_timeout():
 	var origin: Building = my_buildings.pick_random()
-	print_debug("enemy spawning from origin {id} of {options} possible options".format({ "id": origin.id, "options": my_buildings.size() }))
 	var targets = get_tree().get_nodes_in_group("buildings").filter(func(building): return building.team != MY_TEAM)
 	
 	if not targets.is_empty():
