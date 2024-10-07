@@ -16,8 +16,6 @@ var is_dragging = false
 @export var default_value := 10
 @export var default_tick := 1.0
 
-var troop_scene: PackedScene = preload("res://scenes/3d/troop.tscn")
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	overlay_collider = overlay.get_collider()
@@ -30,10 +28,9 @@ func _ready() -> void:
 	
 	Globals.building_team_changed.connect(_on_building_team_changed)
 	
-func _on_building_team_changed() -> void:
+func _on_building_team_changed(_old_team, _new_team) -> void:
 	var is_player_alive = buildings.any(func(building): return building.team == Globals.Teams.PLAYER)
 	var is_enemy_alive = buildings.any(func(building): return building.team == Globals.Teams.ENEMY)
-	var is_netural_alive = buildings.any(func(building): return building.team == Globals.Teams.NEUTRAL)
 	
 	if not is_player_alive or not is_enemy_alive:
 		print_debug("Game over... You {result}!".format({ "result": "won" if is_player_alive else "lost" }))
@@ -133,35 +130,7 @@ func stop_drag():
 	var target = _get_click_collider()
 	if target and target.is_in_group("buildings") and target.id != selected_building_id:
 		var origin = buildings[selected_building_id]
-		spawn_army(origin, target.position)
+		Globals.spawn_army(origin, target.position)
 		
 	selected_building_id = -1
 		
-
-func spawn_army(spawner: Building, target: Vector3) -> void:
-	var army_size: int = spawner.value / 2
-	spawner.halve()
-		
-	var spawn_delay = 0.1
-
-	for i in range(army_size):
-		var timer = Timer.new()
-		timer.wait_time = spawn_delay * i + 0.1 * randf_range(0.1,2)
-		timer.one_shot = true
-		
-		var random_offset = Vector3(
-			randf_range(-0.5, 0.5),
-			randf_range(-0.2,0.2),
-			randf_range(-0.5, 0.5)
-		)
-		var varied_target = target + random_offset
-
-		timer.timeout.connect(spawn_troop.bind(spawner, varied_target))
-		
-		add_child(timer)
-		timer.start()
-
-func spawn_troop(spawner: Building, target: Vector3) -> void:
-	var new_troop = troop_scene.instantiate()
-	new_troop.initialize(5.0, spawner, target)
-	get_tree().current_scene.add_child(new_troop)

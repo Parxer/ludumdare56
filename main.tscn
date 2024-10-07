@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://n2yavlrwe3og"]
+[gd_scene load_steps=35 format=3 uid="uid://n2yavlrwe3og"]
 
 [ext_resource type="Script" path="res://camera_3d.gd" id="1_1u54x"]
 [ext_resource type="Script" path="res://main.gd" id="1_i71he"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="20_2ufns"]
 [ext_resource type="PackedScene" uid="uid://bhusjim6ncwtn" path="res://audio_manager.tscn" id="23_hsw60"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="23_xaly8"]
+[ext_resource type="PackedScene" uid="uid://cu3gld1k3tql5" path="res://enemy_ai.tscn" id="24_c5brl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38rp7"]
 sky_top_color = Color(0.589032, 0.402625, 0.224484, 1)
@@ -495,6 +496,8 @@ transform = Transform3D(-5.00633, -8.23026, -0.474548, -1.97553e-08, 0.544846, -
 transform = Transform3D(0.192002, 5.13864, -8.03306, 10.0086, -4.20828e-07, 0.215646, 0.121336, -8.13136, -5.07653, 13.2137, 0.45, -10.182)
 
 [node name="AudioManager" parent="." instance=ExtResource("23_hsw60")]
+
+[node name="EnemyAI" parent="." instance=ExtResource("24_c5brl")]
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

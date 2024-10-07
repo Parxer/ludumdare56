@@ -86,12 +86,12 @@ func _start_timer():
 		timer.start(tick)
 
 func set_team(new_team: Globals.Teams = team) -> void:
-	var is_changing_team = new_team != team
+	var old_team = team
 	team = new_team
 	player_body.visible = team == Globals.Teams.PLAYER
 	enemy_body.visible = team == Globals.Teams.ENEMY
 	neutral_body.visible = team == Globals.Teams.NEUTRAL
 	
-	if is_changing_team:
-		Globals.building_team_changed.emit()
+	if old_team != new_team:
+		Globals.building_team_changed.emit(old_team, new_team)
 	
