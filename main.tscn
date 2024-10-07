@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://btt3fq2w5gsis" path="res://assets/3d/env/trunk.blend" id="19_h7anx"]
 [ext_resource type="PackedScene" uid="uid://3s3trdbxh8mu" path="res://assets/3d/env/tree6.blend" id="19_r4vm1"]
 [ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="20_2ufns"]
-[ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="21_4yhy8"]
+[ext_resource type="PackedScene" uid="uid://bhusjim6ncwtn" path="res://audio_manager.tscn" id="23_hsw60"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="23_xaly8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_38rp7"]
@@ -344,12 +344,6 @@ omni_attenuation = 0.0
 [node name="UI" parent="." instance=ExtResource("20_2ufns")]
 visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_4yhy8")
-volume_db = -25.0
-autoplay = true
-parameters/looping = true
-
 [node name="WinOverlay" type="VBoxContainer" parent="."]
 visible = false
 anchors_preset = 8
@@ -498,3 +492,5 @@ transform = Transform3D(-5.00633, -8.23026, -0.474548, -1.97553e-08, 0.544846, -
 
 [node name="boulder12" parent="Border" instance=ExtResource("15_ge4pu")]
 transform = Transform3D(0.192002, 5.13864, -8.03306, 10.0086, -4.20828e-07, 0.215646, 0.121336, -8.13136, -5.07653, 13.2137, 0.45, -10.182)
+
+[node name="AudioManager" parent="." instance=ExtResource("23_hsw60")]

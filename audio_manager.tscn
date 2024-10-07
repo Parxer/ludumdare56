@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhusjim6ncwtn"]
+
+[ext_resource type="Script" path="res://audio_manager.gd" id="1_3kk0f"]
+[ext_resource type="AudioStream" uid="uid://dxnsr2calkfyq" path="res://sound/ambience.mp3" id="2_ubcxe"]
+[ext_resource type="AudioStream" uid="uid://c50d37tjoc26r" path="res://sound/poof.mp3" id="3_6lo3q"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_3kk0f")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ubcxe")
+
+[node name="Poof" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6lo3q")

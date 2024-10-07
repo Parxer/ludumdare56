@@ -31,4 +31,6 @@ func _on_area_entered(area: Area3D) -> void:
 		return
 	if area is Building:
 		area.troop_entered(self)
+		AudioManager.play_attack()
+		
 		queue_free()

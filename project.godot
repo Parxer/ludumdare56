@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Draw3d="*res://draw_3d.gd"
 Globals="*res://globals.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [file_customization]
 
