@@ -1,0 +1,14 @@
+[gd_resource type="SphereMesh" load_steps=2 format=3 uid="uid://u5g4sw5kmbjt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qecu2"]
+albedo_color = Color(0.501961, 0.254902, 0.847059, 1)
+emission_enabled = true
+emission = Color(0.418874, 0.0798965, 0.594038, 1)
+emission_energy_multiplier = 5.0
+
+[resource]
+material = SubResource("StandardMaterial3D_qecu2")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 2

@@ -1,6 +1,11 @@
 class_name Troop extends Area3D
 
+var player_mat = preload("res://assets/fx/mat_troop_player.tres")
+var enemy_mat = preload("res://assets/fx/mat_troop_enemy.tres")
+
 @onready var collider = $CollisionShape3D
+@onready var mesh = $MeshInstance3D
+
 var speed := 0.0
 var spawner: Area3D
 var target: Vector3
@@ -19,7 +24,10 @@ func initialize(init_speed: float, init_spawner: Building, init_target: Vector3)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	#if team == Globals.Teams.PLAYER:
+		#mesh.set_surface_override_material(0, player_mat)
+	#else:
+	mesh.material_override = enemy_mat
 
 func _physics_process(delta: float) -> void:
 	var direction = (target - transform.origin).normalized();
