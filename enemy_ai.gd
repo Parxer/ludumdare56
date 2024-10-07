@@ -10,16 +10,19 @@ const MY_TEAM = Globals.Teams.ENEMY
 func _ready() -> void:
 	_update_my_buildings()
 	Globals.building_team_changed.connect(_on_building_team_changed)
+	Globals.game_started.connect(_on_game_started)
+	Globals.game_ended.connect(_on_game_ended)
 	
 	timer = Timer.new()
 	timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
+
+func _on_game_started():
 	timer.start(spawn_delay / 2)
 	timer.wait_time = spawn_delay
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+func _on_game_ended():
+	timer.stop()
 
 func _on_building_team_changed(old_team, new_team) -> void:
 	if old_team == MY_TEAM or new_team == MY_TEAM:

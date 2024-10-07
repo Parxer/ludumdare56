@@ -29,14 +29,9 @@ func _ready() -> void:
 	Globals.building_team_changed.connect(_on_building_team_changed)
 	
 func _on_building_team_changed(_old_team, _new_team) -> void:
-	var is_player_alive = buildings.any(func(building): return building.team == Globals.Teams.PLAYER)
-	var is_enemy_alive = buildings.any(func(building): return building.team == Globals.Teams.ENEMY)
-	
-	if not is_player_alive:
-		$LoseOverlay.show()
-	elif not is_enemy_alive:
-		$WinOverlay.show()
-		
+	check_win_condition()
+
+
 func _process(_delta) -> void:
 	if is_dragging:
 		handle_drag()
@@ -55,6 +50,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				close_overlay()
 			else:
 				pass
+
+func check_win_condition():
+	var is_player_alive = buildings.any(func(building): return building.team == Globals.Teams.PLAYER)
+	var is_enemy_alive = buildings.any(func(building): return building.team == Globals.Teams.ENEMY)
+	
+	if not is_player_alive:
+		$LoseOverlay.show()
+		Globals.game_ended.emit()
+	elif not is_enemy_alive:
+		$WinOverlay.show()
+		Globals.game_ended.emit()
 
 func handle_click() -> void:
 	var target = _get_click_collider()

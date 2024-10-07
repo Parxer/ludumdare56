@@ -3,10 +3,15 @@ extends Node
 enum Teams { PLAYER, ENEMY, NEUTRAL }
 
 signal building_team_changed
+signal game_started
+signal game_ended
 
 var troop_scene: PackedScene = preload("res://scenes/3d/troop.tscn")
 
 func spawn_army(spawner: Building, target: Vector3) -> void:
+	if spawner.value <= 1:
+		return
+		
 	var army_size: int = spawner.value / 2
 	spawner.halve()
 		
@@ -24,7 +29,11 @@ func spawn_army(spawner: Building, target: Vector3) -> void:
 		)
 		var varied_target = target + random_offset
 
-		timer.timeout.connect(spawn_troop.bind(spawner, varied_target))
+		#timer.timeout.connect(spawn_troop.bind(timer, spawner, varied_target))
+		timer.timeout.connect(func():
+			spawn_troop(spawner, varied_target)
+			timer.queue_free()
+		)
 		
 		add_child(timer)
 		timer.start()

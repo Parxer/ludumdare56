@@ -37,8 +37,19 @@ func initialize(init_id: int, init_value: int, init_tick: float) -> void:
 	_process_tick(value)
 
 func _ready() -> void:
+	#call once to set correct body
 	set_team()
+	
+	Globals.game_ended.connect(_on_game_ended)
+	Globals.game_started.connect(_on_game_started)
+
+func _on_game_started():
+	value_label.visible = true
 	_start_timer()
+
+func _on_game_ended():	
+	value_label.visible = false
+	timer.stop()
 
 func update_scale() -> void:
 	var scale_diff = 1 + ((float(value) / initial_state.value) - 1) * DELTA_SCALE
