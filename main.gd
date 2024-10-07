@@ -29,6 +29,7 @@ func _ready() -> void:
 	
 	Globals.building_team_changed.connect(_on_building_team_changed)
 	call_deferred("_init_mouse_line")
+	AudioManager.play_music()
 	
 func _on_building_team_changed(_old_team, _new_team) -> void:
 	check_win_condition()

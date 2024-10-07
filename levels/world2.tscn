@@ -1,6 +1,7 @@
-[gd_scene load_steps=29 format=3 uid="uid://0rbxm80gmu83"]
+[gd_scene load_steps=34 format=3 uid="uid://0rbxm80gmu83"]
 
 [ext_resource type="PackedScene" uid="uid://dopi81e1vc422" path="res://assets/3d/env/boulder.blend" id="1_7nflb"]
+[ext_resource type="Script" path="res://main.gd" id="1_jxq1s"]
 [ext_resource type="PackedScene" uid="uid://sicwngshktd4" path="res://assets/3d/env/ground2.tscn" id="3_0y5aw"]
 [ext_resource type="Script" path="res://camera_3d.gd" id="3_cafyh"]
 [ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_vgb4y"]
@@ -12,10 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://dohkdhxs0jqff" path="res://assets/3d/env/bush.blend" id="14_c35f3"]
 [ext_resource type="PackedScene" uid="uid://6tt6iw1m6f6m" path="res://assets/3d/env/muld.blend" id="15_85ant"]
 [ext_resource type="PackedScene" uid="uid://btt3fq2w5gsis" path="res://assets/3d/env/trunk.blend" id="16_mwtl2"]
+[ext_resource type="Script" path="res://ui.gd" id="16_ppqtb"]
 [ext_resource type="PackedScene" uid="uid://3s3trdbxh8mu" path="res://assets/3d/env/tree6.blend" id="17_vbnv4"]
 [ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="18_oyebw"]
 [ext_resource type="PackedScene" uid="uid://c7ciwc525w3us" path="res://assets/3d/env/tree7.blend" id="19_0s8kn"]
-[ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="19_sx5vf"]
+[ext_resource type="PackedScene" uid="uid://cu3gld1k3tql5" path="res://enemy_ai.tscn" id="20_ccfyb"]
 [ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="20_v45ar"]
 [ext_resource type="PackedScene" uid="uid://bhusjim6ncwtn" path="res://audio_manager.tscn" id="21_0jggr"]
 
@@ -56,6 +58,13 @@ height = 0.05
 radial_segments = 4
 rings = 2
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35fdi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_303y3"]
+bg_color = Color(0.968627, 0.968627, 0.968627, 0.117647)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kpl06"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibfqd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88lif"]
@@ -64,6 +73,7 @@ bg_color = Color(0.968627, 0.968627, 0.968627, 0.117647)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3e2w2"]
 
 [node name="World2" type="Node3D"]
+script = ExtResource("1_jxq1s")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_x3fl7")
@@ -97,12 +107,6 @@ initial_velocity_max = 2.0
 linear_accel_min = -0.5
 linear_accel_max = 0.5
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.694169, 0.452358, -0.559913, 0, 0.777859, 0.628438, 0.719813, -0.436242, 0.539966, -21.4759, 14.4368, 0)
-visible = false
-light_color = Color(1, 0.921569, 0.858824, 1)
-light_energy = 1.5
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.529919, 0.599661, -0.599661, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.374709, -12.32, 20, -4.82)
 fov = 45.0
@@ -118,7 +122,7 @@ visible = false
 [node name="Arrow" type="Node3D" parent="."]
 visible = false
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.679507, 0.0448353, -0.732298, 0.311897, 0.885792, 0.343646, 0.664071, -0.461911, 0.587918, -5.4034, 11.2583, 17.4314)
 light_energy = 0.3
 light_angular_distance = 90.0
@@ -172,7 +176,7 @@ transform = Transform3D(-0.295865, 0, 1.28225, 0, 1.00084, 0, -0.877826, 0, -0.4
 transform = Transform3D(0.0821339, 0, 1.6321, 0, 1.21991, 0, -1.70373, 0, 0.0786811, 2.87305, 0, 13.5585)
 
 [node name="tree10" parent="Assets" instance=ExtResource("5_okmnu")]
-transform = Transform3D(1.19581, 0, -1.52137, -0.105045, 2.03661, -0.0743593, 1.59969, 0.133737, 1.13238, 4.25272, 9.53674e-07, 12.3325)
+transform = Transform3D(1.90002, 0.0772238, -0.588237, -0.105045, 2.03661, -0.0743593, 0.615554, 0.109188, 1.80301, 0.882852, 9.53674e-07, 12.3325)
 
 [node name="tree13" parent="Assets" instance=ExtResource("7_uvk1t")]
 transform = Transform3D(1.42797, -0.064159, 0.579399, 0.0849119, 1.75324, -0.109939, -0.451333, 0.126856, 1.81247, -7.41322, -0.0917435, 9.20601)
@@ -217,7 +221,7 @@ transform = Transform3D(0.366264, -0.304426, -0.879304, 0.201315, 0.948513, -0.2
 transform = Transform3D(0.881477, 0, 1.79527, 0.113477, 1.996, -0.0557169, -1.79168, 0.126417, 0.879714, -9.63607, -0.165651, 4.03425)
 
 [node name="tree7" parent="Assets" instance=ExtResource("6_xq40x")]
-transform = Transform3D(1.68523, 0, 0.632433, 0, 1.8, 0, -0.632433, 0, 1.68523, 9.76272, 0, 10.7791)
+transform = Transform3D(-0.207128, 0, 0.978314, 0, 1, 0, -0.978314, 0, -0.207128, 6.51678, 0, 9.03735)
 
 [node name="tree8" parent="Assets" instance=ExtResource("5_okmnu")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 6.07192, -9.53674e-07, -6.9321)
@@ -311,11 +315,11 @@ transform = Transform3D(-0.358355, -0.0466822, 0.932417, -0.129177, 0.991622, -1
 team = 2
 
 [node name="Building4" parent="Buildings" instance=ExtResource("18_oyebw")]
-transform = Transform3D(-0.473489, 0.109297, 0.873992, 0.0767713, 0.993616, -0.0826651, -0.877448, 0.0279566, -0.478857, 5.66591, -9.53674e-07, 10.9295)
+transform = Transform3D(-0.473489, 0.109297, 0.873992, 0.0767713, 0.993616, -0.0826651, -0.877448, 0.0279566, -0.478857, 6.56259, -9.53674e-07, 14.5145)
 team = 2
 
 [node name="Building5" parent="Buildings" instance=ExtResource("18_oyebw")]
-transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503, 5.91061, 0, -1.00992)
+transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503, 4.62617, 0, -2.82046)
 team = 2
 
 [node name="Building6" parent="Buildings" instance=ExtResource("18_oyebw")]
@@ -334,7 +338,81 @@ shadow_enabled = true
 omni_range = 18.966
 omni_attenuation = 0.0
 
-[node name="UI" parent="." instance=ExtResource("19_sx5vf")]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("16_ppqtb")
+
+[node name="Container" type="VBoxContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -186.0
+offset_right = 289.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Control/Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("20_v45ar")
+theme_override_font_sizes/font_size = 120
+text = "THE WHITE WOODS"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = -53.0
+offset_top = -41.0
+offset_right = 93.0
+offset_bottom = 85.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("20_v45ar")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_35fdi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_303y3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kpl06")
+text = " Start "
+
+[node name="Quit" type="Button" parent="Control/Buttons"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("20_v45ar")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_35fdi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_303y3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kpl06")
+text = " Quit "
 
 [node name="WinOverlay" type="VBoxContainer" parent="."]
 visible = false
@@ -371,7 +449,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
-text = " Play again"
+text = " Play again "
 
 [node name="Quit" type="Button" parent="WinOverlay/Buttons"]
 layout_mode = 2
@@ -419,7 +497,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
-text = " Play again"
+text = " Play again "
 
 [node name="Quit" type="Button" parent="LoseOverlay/Buttons"]
 layout_mode = 2
@@ -488,6 +566,7 @@ transform = Transform3D(0.216358, 2.92688, -9.05209, 10.0086, -4.37972e-07, 0.21
 [node name="AudioManager" parent="." instance=ExtResource("21_0jggr")]
 
 [node name="Label" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -515,3 +594,12 @@ transform = Transform3D(2.98443, 0.277254, 0.12772, -0.284871, 2.98063, 0.186234
 
 [node name="tree10" parent="." instance=ExtResource("19_0s8kn")]
 transform = Transform3D(3.14059, 0.145646, 2.47295, -0.379828, 3.97418, 0.248312, -2.44794, -0.429785, 3.13415, -6.8086, 0.45, 5.38383)
+
+[node name="EnemyAI" parent="." instance=ExtResource("20_ccfyb")]
+
+[connection signal="pressed" from="Control/Buttons/Start" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Buttons/Quit" to="Control" method="_on_quit_pressed"]
+[connection signal="pressed" from="WinOverlay/Buttons/Play again" to="Control" method="_on_play_again_pressed"]
+[connection signal="pressed" from="WinOverlay/Buttons/Quit" to="Control" method="_on_quit_pressed"]
+[connection signal="pressed" from="LoseOverlay/Buttons/Play again" to="Control" method="_on_play_again_pressed"]
+[connection signal="pressed" from="LoseOverlay/Buttons/Quit" to="Control" method="_on_quit_pressed"]

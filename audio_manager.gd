@@ -7,7 +7,7 @@ extends Node
 @onready var shroom2 = $Shroom2
 @onready var bg_music = $BGmusic
 
-func _ready():
+func play_music():
 	bg_music.play()
 	ambience.play()
 

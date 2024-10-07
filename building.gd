@@ -85,7 +85,10 @@ func troop_entered(troop: Troop):
 		if new_value <= 0:
 			new_value = abs(new_value) + 1
 			set_team(troop.team)
-			AudioManager.play_shroom1()
+			if troop.team == Globals.Teams.PLAYER:
+				AudioManager.play_shroom1()
+			elif troop.team == Globals.Teams.ENEMY:
+				AudioManager.play_shroom2()
 			$Clouds.emitting = true
 		else:
 			value = new_value

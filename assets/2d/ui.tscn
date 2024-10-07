@@ -40,14 +40,13 @@ theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961
 theme_override_constants/outline_size = 15
 theme_override_fonts/font = ExtResource("1_5jqf6")
 theme_override_font_sizes/font_size = 120
-text = "PIXIES of the
-GIANT'S FALL"
+text = "WOODLAND PIXIES"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 
 [node name="Play" type="Button" parent="Container/Buttons"]
 layout_mode = 2
@@ -60,7 +59,7 @@ theme_override_font_sizes/font_size = 60
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5lvv7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w4kdq")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_dfifj")
-text = " Play "
+text = "Play"
 
 [node name="Quit" type="Button" parent="Container/Buttons"]
 layout_mode = 2

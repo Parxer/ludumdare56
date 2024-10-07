@@ -95,12 +95,6 @@ transform = Transform3D(1.77612, 0, -0.370747, 0.0872472, 1.21483, 0.275578, 0.4
 [node name="ground" parent="Ground" instance=ExtResource("5_ltrys")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.0932, 0.0499998, 1.01476)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.694169, 0.452358, -0.559913, 0, 0.777859, 0.628438, 0.719813, -0.436242, 0.539966, -21.4759, 14.4368, 0)
-visible = false
-light_color = Color(1, 0.921569, 0.858824, 1)
-light_energy = 1.5
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.529919, 0.599661, -0.599661, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.374709, -12.32, 20, -4.82)
 fov = 45.0
@@ -116,7 +110,7 @@ visible = false
 [node name="Arrow" type="Node3D" parent="."]
 visible = false
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.679507, 0.0448353, -0.732298, 0.311897, 0.885792, 0.343646, 0.664071, -0.461911, 0.587918, -5.4034, 11.2583, 17.4314)
 light_energy = 0.05
 light_angular_distance = 90.0
@@ -373,6 +367,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Next level" type="Button" parent="WinOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("23_xaly8")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gu5rq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6mpdi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_way5q")
+text = " Next level "
+
 [node name="Play again" type="Button" parent="WinOverlay/Buttons"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
@@ -510,23 +517,7 @@ transform = Transform3D(0.192002, 5.13864, -8.03306, 10.0086, -4.20828e-07, 0.21
 
 [node name="EnemyAI" parent="." instance=ExtResource("24_c5brl")]
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -231.0
-offset_right = 231.0
-offset_bottom = 69.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
-theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
-theme_override_constants/outline_size = 15
-theme_override_fonts/font = ExtResource("23_xaly8")
-theme_override_font_sizes/font_size = 80
-text = "14:00:56"
-horizontal_alignment = 1
-
+[connection signal="pressed" from="WinOverlay/Buttons/Next level" to="UI" method="_on_next_level_pressed"]
 [connection signal="pressed" from="WinOverlay/Buttons/Play again" to="UI" method="_on_play_again_pressed"]
 [connection signal="pressed" from="WinOverlay/Buttons/Quit" to="UI" method="_on_quit_pressed"]
 [connection signal="pressed" from="LoseOverlay/Buttons/Play again" to="UI" method="_on_play_again_pressed"]

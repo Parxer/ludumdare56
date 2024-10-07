@@ -1,0 +1,403 @@
+[gd_scene load_steps=26 format=3 uid="uid://dt1wsoypyckhq"]
+
+[ext_resource type="PackedScene" uid="uid://dopi81e1vc422" path="res://assets/3d/env/boulder.blend" id="1_0517a"]
+[ext_resource type="Script" path="res://main.gd" id="1_e48sr"]
+[ext_resource type="PackedScene" uid="uid://csobaxgj3iesq" path="res://assets/3d/env/ground3.tscn" id="2_aapku"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_fduwi"]
+[ext_resource type="PackedScene" uid="uid://boiwwh8ebbp2w" path="res://overlay.tscn" id="4_ueh21"]
+[ext_resource type="PackedScene" uid="uid://dxabqll5m130t" path="res://assets/3d/env/boulder3.blend" id="8_o7cwq"]
+[ext_resource type="PackedScene" uid="uid://c00o40ddnfr5o" path="res://assets/3d/env/boulder2.blend" id="9_s4qlb"]
+[ext_resource type="PackedScene" uid="uid://mx2ivtu627q8" path="res://assets/3d/env/vent.tscn" id="11_pxjea"]
+[ext_resource type="PackedScene" uid="uid://cu3gld1k3tql5" path="res://enemy_ai.tscn" id="13_r82e2"]
+[ext_resource type="PackedScene" uid="uid://ckw1x2opbkn3" path="res://building.tscn" id="14_4okq8"]
+[ext_resource type="PackedScene" uid="uid://cvbhelako50o1" path="res://assets/2d/ui.tscn" id="15_apmvu"]
+[ext_resource type="FontFile" uid="uid://cw48ovpwin3ff" path="res://assets/textures/p22artsandcrafts.ttf" id="16_lu0ih"]
+[ext_resource type="PackedScene" uid="uid://bhusjim6ncwtn" path="res://audio_manager.tscn" id="17_ce2rp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tdtrq"]
+sky_top_color = Color(0.589032, 0.402625, 0.224484, 1)
+sky_horizon_color = Color(0.715592, 0.656265, 0.415977, 1)
+ground_bottom_color = Color(0.217464, 0.163152, 0.10603, 1)
+ground_horizon_color = Color(0.623126, 0.647061, 0.777143, 1)
+sun_angle_max = 141.11
+sun_curve = 0.424264
+
+[sub_resource type="Sky" id="Sky_e1nus"]
+sky_material = SubResource("ProceduralSkyMaterial_tdtrq")
+
+[sub_resource type="Environment" id="Environment_x3fl7"]
+background_mode = 1
+sky = SubResource("Sky_e1nus")
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.6
+fog_enabled = true
+fog_light_color = Color(0.942034, 0.857125, 0.808278, 1)
+fog_light_energy = 0.01
+volumetric_fog_emission = Color(0.807429, 0.670822, 0.637147, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yrktg"]
+exposure_multiplier = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53j44"]
+size = Vector3(64.7058, 1, 77.7242)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ibfqd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88lif"]
+bg_color = Color(0.968627, 0.968627, 0.968627, 0.117647)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3e2w2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_igyjq"]
+albedo_color = Color(0.941038, 0.271244, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.43209, 0.142278, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_w0eic"]
+material = SubResource("StandardMaterial3D_igyjq")
+radial_segments = 4
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nbu0x"]
+albedo_color = Color(0.465829, 0, 0.114722, 1)
+emission_enabled = true
+emission = Color(0.820733, 0.392639, 7.70092e-07, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_qjfc7"]
+material = SubResource("StandardMaterial3D_nbu0x")
+
+[node name="World3" type="Node3D"]
+script = ExtResource("1_e48sr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x3fl7")
+camera_attributes = SubResource("CameraAttributesPractical_yrktg")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39954, -0.05, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8422, 0, 20.1605)
+shape = SubResource("BoxShape3D_53j44")
+
+[node name="boulder" parent="Ground" instance=ExtResource("1_0517a")]
+transform = Transform3D(1.77612, 0, -0.370747, 0.0872472, 1.21483, 0.275578, 0.44818, -0.236492, 1.41561, 7.31364, -0.0555463, 8.44009)
+
+[node name="ground3" parent="Ground" instance=ExtResource("2_aapku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3556, 0.0499998, 9.08545)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.529919, 0.599661, -0.59966, 0, 0.707107, 0.707107, 0.848048, 0.37471, -0.374709, -16.7872, 20, -6.05701)
+fov = 45.0
+size = 11.98
+near = 1.0
+far = 100.0
+script = ExtResource("3_fduwi")
+
+[node name="Overlay" parent="Camera3D" instance=ExtResource("4_ueh21")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -6)
+visible = false
+
+[node name="Arrow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39954, 0, 0)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.679507, 0.0448353, -0.732298, 0.311897, 0.885792, 0.343646, 0.664071, -0.461911, 0.587918, -1.00386, 11.2583, 17.4314)
+light_color = Color(0.879214, 0.789296, 0.787936, 1)
+light_energy = 0.4
+light_angular_distance = 90.0
+shadow_enabled = true
+
+[node name="Assets" type="Node" parent="."]
+
+[node name="boulder3" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-0.887631, 0, -0.460557, 0, 1, 0, 0.460557, 0, -0.887631, 16.469, -1.74376, 3.82748)
+
+[node name="boulder" parent="Assets" instance=ExtResource("1_0517a")]
+transform = Transform3D(1.4794, 0, -0.52204, 0, 1.35689, 0, 0.527404, 0, 1.46437, 23.8694, -0.0480208, 1.66373)
+
+[node name="boulder2" parent="Assets" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(0.955066, 0, 0.296392, 0, 1, 0, -0.296392, 0, 0.955066, 19.478, 0, 20.301)
+
+[node name="boulder4" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-0.000643134, 2.90519, 0.217751, 0.0394975, 0.243088, -2.60187, -2.5036, 0.00309074, -0.0411035, 13.5234, 0.474041, -7.82276)
+
+[node name="boulder5" parent="Assets" instance=ExtResource("1_0517a")]
+transform = Transform3D(-0.157892, -0.950666, -0.354658, -0.479694, 0.312913, -1.07749, 0.776581, 0, -0.737676, 6.25398, -0.0329218, -8.52842)
+
+[node name="boulder6" parent="Assets" instance=ExtResource("1_0517a")]
+transform = Transform3D(0.920409, 0.150911, -0.360657, -0.115667, 0.986311, 0.117519, 0.373455, -0.0664496, 0.925266, 9.70208, 0, -2.08939)
+
+[node name="boulder7" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(0.622476, -0.194189, -1.17351, -1.11118e-10, 1.68906, -0.161074, 1.41368, 0.0855058, 0.516723, 12.2023, -0.970832, 0.966635)
+
+[node name="boulder8" parent="Assets" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(0.590819, 0, 0.566793, 0, 0.774935, 0, -0.488386, 0, 0.685671, 8.24195, 0, -1.62555)
+
+[node name="boulder9" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(3.14919, 0, 0.921311, 0, 2.02022, 0, -1.24406, 0, 2.33219, 7.00681, -1.99089, 22.7763)
+
+[node name="boulder10" parent="Assets" instance=ExtResource("1_0517a")]
+transform = Transform3D(0.842913, 0, 0.53805, 0, 1, 0, -0.53805, 0, 0.842913, 11.1184, 0, 19.2465)
+
+[node name="boulder11" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-1.14029, 1.66399, 3.45411, -3.68576, -1.46822, -0.509457, 1.05592, -3.32798, 1.95182, -3.4816, -0.0396286, 10.2493)
+
+[node name="boulder12" parent="Assets" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(1.49981, -0.0193986, 0.0142447, 0.0189709, 1.49923, 0.0442406, -0.0148072, -0.0440548, 1.49928, 2.02414, -0.224692, 19.1866)
+
+[node name="boulder13" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-2.52555, 0, 1.61913, 0, 3, 0, -1.61913, 0, -2.52555, 24.8419, -1.84628, 13.5748)
+
+[node name="boulder14" parent="Assets" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-1.40587, -1.7846, -1.95927, -2.42186, -0.0354989, 1.77013, -1.07617, 2.41122, -1.42404, 12.3609, -0.13783, 4.86111)
+
+[node name="Buildings" type="Node" parent="."]
+
+[node name="Building" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93987, 0, -1.73831)
+team = 2
+
+[node name="Building2" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(0.242633, 0, 0.970118, 0, 1, 0, -0.970118, 0, 0.242633, 5.63395, 0, 23.1674)
+
+[node name="Building3" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(-0.358355, -0.0466822, 0.932417, -0.129177, 0.991622, -1.89225e-07, -0.924605, -0.120447, -0.361383, -5.54034, 0, 15.8297)
+team = 2
+
+[node name="Building4" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(-0.473489, 0.109297, 0.873992, 0.0767713, 0.993616, -0.0826651, -0.877448, 0.0279566, -0.478857, -6.90696, -9.53674e-07, -0.387316)
+team = 1
+
+[node name="Building5" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503, 6.77274, 0, -11.3686)
+
+[node name="Building6" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.7105, 0, 25.5885)
+team = 2
+
+[node name="Building7" parent="Buildings" instance=ExtResource("14_4okq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0525, 0, -0.940354)
+team = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5488, 10.4967, 9.04572)
+light_color = Color(0.928505, 0.684766, 0.599418, 1)
+light_energy = 0.3
+shadow_enabled = true
+omni_range = 18.966
+omni_attenuation = 0.0
+
+[node name="UI" parent="." instance=ExtResource("15_apmvu")]
+
+[node name="WinOverlay" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -186.0
+offset_right = 289.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Win" type="Label" parent="WinOverlay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 200
+text = "You won!"
+
+[node name="Buttons" type="VBoxContainer" parent="WinOverlay"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play again" type="Button" parent="WinOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
+text = " Play again"
+
+[node name="Quit" type="Button" parent="WinOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
+text = " Quit "
+
+[node name="LoseOverlay" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -186.0
+offset_right = 289.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lose" type="Label" parent="LoseOverlay"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.74085, 0.619346, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 200
+text = "You lost!"
+
+[node name="Buttons" type="VBoxContainer" parent="LoseOverlay"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play again" type="Button" parent="LoseOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
+text = " Play again"
+
+[node name="Quit" type="Button" parent="LoseOverlay/Buttons"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ibfqd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_88lif")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3e2w2")
+text = " Quit "
+
+[node name="Border" type="Node" parent="."]
+
+[node name="boulder2" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(9.09432, 0, 8.49158, 0, 10, 0, -6.41177, 0, 12.0443, -11.2077, -3.77724, -15.5824)
+
+[node name="boulder17" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(2.53918, 0, -1.04524, 0, 2, 0, 1.5821, 0, 1.67756, -10.9588, -0.192239, -6.05862)
+
+[node name="boulder3" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(14.0133, -2.8234, -0.140006, -2.2464e-08, 0.640105, -10.0726, 3.58134, 11.0476, 0.547829, -16.7311, 0, -6.80441)
+
+[node name="boulder" parent="Border" instance=ExtResource("1_0517a")]
+transform = Transform3D(-0.191004, 12.4192, 3.22273, -9.99454, -0.319889, 0.302354, 0.274158, -3.00933, 13.2677, -20.0292, 0.45, 9.61775)
+
+[node name="boulder4" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(-3.06247, 0, 13.9783, 0, 10, 0, -10.8776, 0, -3.93542, -17.372, -3.77724, 21.3261)
+
+[node name="boulder5" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(7.63604, 10.2209, 0.380136, -1.45619e-08, 0.868732, -10.2529, -6.71668, 11.6199, 0.432167, -10.2388, 0, 26.6508)
+
+[node name="boulder14" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-0.0361496, -13.0702, -2.97298, 0.345988, -3.69592, 10.5085, -12.6503, -0.0637346, 0.295906, 18.1838, 0, -18.6603)
+
+[node name="boulder6" parent="Border" instance=ExtResource("1_0517a")]
+transform = Transform3D(-0.223712, -1.22901, 13.9689, 9.90889, -5.31466e-07, 0.31863, -0.0227234, 12.0994, 1.41891, 4.29464, 0.45, 31.2104)
+
+[node name="boulder7" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(-4.00828, 0, -11.8101, 0, 10, 0, 13.7795, 0, -3.43541, 38.0112, -3.77724, 24.4914)
+
+[node name="boulder8" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-14.0222, 1.63105, 0.0772722, -3.47552e-08, 0.671744, -10.0989, -1.92928, -11.8547, -0.561622, 39.7953, 0, 18.7068)
+
+[node name="boulder13" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-3.90324, 13.2723, -2.05669, 1.10803, -2.91371, -9.00191, -10.0154, -5.49488, -0.194369, 21.9396, 0, 34.8179)
+
+[node name="boulder9" parent="Border" instance=ExtResource("1_0517a")]
+transform = Transform3D(0.159, -11.5429, -4.84337, -10.0115, -0.307742, 0.311287, -0.294524, 4.22935, -13.1961, 41.1243, 0.45, 2.33481)
+
+[node name="boulder15" parent="Border" instance=ExtResource("1_0517a")]
+transform = Transform3D(-0.43558, 4.36565, -20.9634, 15.5211, -2.00355, -1.29558, -2.01835, -16.3495, -5.4389, 12.7703, 0.45, 38.543)
+
+[node name="boulder10" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(5.9782, 0, -10.9938, 0, 10, 0, 6.43872, 0, 10.2075, 40.0993, -3.77724, -8.74447)
+
+[node name="boulder16" parent="Border" instance=ExtResource("9_s4qlb")]
+transform = Transform3D(4.05743, 0, -13.6558, 0, 10, 0, 9.92957, 0, 5.58007, -0.958216, -3.77724, -22.3516)
+
+[node name="boulder11" parent="Border" instance=ExtResource("8_o7cwq")]
+transform = Transform3D(-7.76893, -9.58432, -0.47974, -3.06567e-08, 0.634485, -10.0781, 12.429, -5.9908, -0.299868, 34.4574, 0, -11.998)
+
+[node name="boulder12" parent="Border" instance=ExtResource("1_0517a")]
+transform = Transform3D(0.213976, 3.32624, -14.0345, 9.89841, -4.97731e-07, 0.334341, 0.0683499, -10.4131, -4.48305, 19.3741, 0.45, -12.5255)
+
+[node name="AudioManager" parent="." instance=ExtResource("17_ce2rp")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.0
+offset_right = 231.0
+offset_bottom = 69.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.741176, 0.619608, 0.901961)
+theme_override_colors/font_outline_color = Color(0, 0.203922, 0.164706, 0.901961)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("16_lu0ih")
+theme_override_font_sizes/font_size = 80
+text = "14:00:56"
+horizontal_alignment = 1
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.62149, 10.0964, 11.8049)
+amount = 3
+lifetime = 10.0
+mesh = SubResource("SphereMesh_w0eic")
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 15.0
+scale_amount_min = 0.1
+scale_amount_max = 0.5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.61121, 11.5805, 11.6233)
+light_color = Color(0.512982, 0.210697, 4.81308e-08, 1)
+light_energy = 16.0
+shadow_enabled = true
+omni_range = 22.251
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.05509, 0, 0, 0, 1, 0, 0, 0, 1.83942, 9.80741, 10.2022, 11.6824)
+mesh = SubResource("BoxMesh_qjfc7")
+
+[node name="vent" parent="." instance=ExtResource("11_pxjea")]
+transform = Transform3D(0.175513, 0, -0.573755, 0, 0.6, 0, 0.573755, 0, 0.175513, -6.25424, 0.45, 4.89387)
+
+[node name="vent5" parent="." instance=ExtResource("11_pxjea")]
+transform = Transform3D(1.91124, 0, -0.589215, 0, 2, 0, 0.589215, 0, 1.91124, -3.28027, 0.45, 24.6869)
+
+[node name="vent4" parent="." instance=ExtResource("11_pxjea")]
+transform = Transform3D(0.731305, 0, -2.39065, 0, 2.5, 0, 2.39065, 0, 0.731305, 21.2338, 0.45, -5.17777)
+
+[node name="vent2" parent="." instance=ExtResource("11_pxjea")]
+transform = Transform3D(-0.445776, 0, 0.895145, 0, 1, 0, -0.895145, 0, -0.445776, 5.33102, 0.45, -5.89058)
+
+[node name="vent3" parent="." instance=ExtResource("11_pxjea")]
+transform = Transform3D(-0.513332, 0, 0.85819, 0, 1, 0, -0.85819, 0, -0.513332, 21.9279, 0.45, 5.30344)
+
+[node name="EnemyAI" parent="." instance=ExtResource("13_r82e2")]
