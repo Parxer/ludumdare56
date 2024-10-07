@@ -278,23 +278,6 @@ transform = Transform3D(1.41421, 0, -1.41421, 0, 2, 0, 1.41421, 0, 1.41421, 15.2
 [node name="bush5" parent="Assets" instance=ExtResource("17_rk1bl")]
 transform = Transform3D(1.13889, 0.129403, 0.967562, -0.0986189, 1.49441, -0.0837829, -0.971183, 0, 1.14316, -1.87512, 0, 13.3562)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14926, 8.31079, 6.20739)
-light_color = Color(1, 0.74886, 0.662093, 1)
-light_energy = 0.3
-shadow_enabled = true
-omni_range = 18.966
-omni_attenuation = 0.0
-
-[node name="UI" parent="." instance=ExtResource("20_2ufns")]
-visible = false
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("21_4yhy8")
-volume_db = -25.0
-autoplay = true
-parameters/looping = true
-
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Building" parent="Buildings" instance=ExtResource("3_hh5b1")]
@@ -317,6 +300,23 @@ transform = Transform3D(1, 0, 0, 0, 0.999503, -0.0315329, 0, 0.0315329, 0.999503
 [node name="Building6" parent="Buildings" instance=ExtResource("3_hh5b1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9641, 0, 13.9569)
 team = 1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.14926, 8.31079, 6.20739)
+light_color = Color(1, 0.74886, 0.662093, 1)
+light_energy = 0.3
+shadow_enabled = true
+omni_range = 18.966
+omni_attenuation = 0.0
+
+[node name="UI" parent="." instance=ExtResource("20_2ufns")]
+visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_4yhy8")
+volume_db = -25.0
+autoplay = true
+parameters/looping = true
 
 [node name="WinOverlay" type="VBoxContainer" parent="."]
 visible = false
